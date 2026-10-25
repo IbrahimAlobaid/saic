@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { t, asset, absolute, locales, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Locale-agnostic path of this page, e.g. '/', '/about/', '/programs/ai-engineering-camp/'. */
+  path: string;
+  jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
+}
+
+const { locale, title, description, path, jsonLd, noindex = false } = Astro.props;
+const d = t(locale);
+const site = Astro.site;
+const canonical = absolute(locale, path, site);
+const ogImage = site ? new URL(asset('/og.png'), site).toString() : asset('/og.png');
+const fonts =
+  'https://fonts.googleapis.com/css2?family=Cairo:wght@300..800&family=Sora:wght@400..700&display=swap';
+---
+
+<!doctype html>
+<html lang={locale} dir={d.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d1c2b" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={absolute(l, path, site)} />)}
+    <link rel="alternate" hreflang="x-default" href={absolute('ar', path, site)} />
+    <meta property="og:site_name" content={d.meta.siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={d.ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href={asset('/favicon.png')} />
+    <link rel="sitemap" href={asset('/sitemap-index.xml')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={fonts} rel="stylesheet" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{d.nav.skip}</a>
+    <div class="ribbon" aria-hidden="true">
+      <svg viewBox="0 0 1200 220" preserveAspectRatio="none">
+        <path d="M-20 130 C 180 20, 380 20, 580 130 S 980 240, 1220 90" fill="none" stroke="#1da4b8" stroke-opacity=".25" stroke-width="2"></path>
+        <path d="M-20 170 C 190 70, 390 70, 590 170 S 990 270, 1220 130" fill="none" stroke="#1da4b8" stroke-opacity=".12" stroke-width="2"></path>
+      </svg>
+    </div>
+
+    <Header locale={locale} path={path} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+
+    <script>
+      // Reveal-on-scroll with a sweep fallback (covers hash loads, jumps and throttled observers).
+      const pending = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+      const show = (el: HTMLElement) => {
+        el.classList.add('in');
+        const i = pending.indexOf(el);
+        if (i > -1) pending.splice(i, 1);
+      };
+      if (!('IntersectionObserver' in window)) {
+        pending.slice().forEach(show);
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                show(e.target as HTMLElement);
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        pending.forEach((el) => io.observe(el));
+        let ticking = false;
+        const sweep = () => {
+          ticking = false;
+          const h = window.innerHeight || document.documentElement.clientHeight;
+          for (const el of pending.slice()) {
+            const r = el.getBoundingClientRect();
+            if (r.top < h * 0.96 && r.bottom > 0) {
+              show(el);
+              io.unobserve(el);
+            }
+          }
+        };
+        const onScroll = () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(sweep);
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        window.addEventListener('load', sweep);
+        setTimeout(sweep, 300);
+      }
+    </script>
+  </body>
+</html>

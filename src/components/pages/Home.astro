@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo.png';
+import mark from '../../assets/mark.png';
+import Follow from '../Follow.astro';
+import { t, href, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const tracks = [...d.about.how.tracks, d.about.how.fifth];
+const campPath = '/programs/ai-engineering-camp/';
+---
+
+<section class="hero">
+  <Image class="wm" src={mark} alt="" width={960} format="webp" loading="eager" aria-hidden="true" />
+  <div class="wrap">
+    <Image class="logo" src={logo} alt={d.hero.logoAlt} widths={[340, 680, 960]} sizes="(max-width: 600px) 72vw, 340px" format="webp" />
+    <div class="bar" aria-hidden="true"></div>
+    <h1>{d.hero.title}</h1>
+    <p class="tag">{d.hero.tag}</p>
+    <p class="lead">{d.hero.lead}</p>
+    <p class="motto">{d.hero.motto}</p>
+    <div class="cta">
+      <a class="btn p" href="#follow">{d.hero.ctaFollow}</a>
+      <a class="btn" href={href(locale, '/about/')}>{d.hero.ctaAbout}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{d.home.about.num}</span><span class="lbl">{d.home.about.kicker}</span></div>
+    <h2 class="reveal">{d.home.about.title}</h2>
+    <p class="sub reveal">{d.home.about.sub}</p>
+    <div class="grid c2">
+      <div class="prose reveal">
+        <p>{d.home.about.p1}</p>
+        <p>{d.home.about.p2}</p>
+        <a class="more" href={href(locale, '/about/')}>{d.home.about.more} <span aria-hidden="true">{d.arrow}</span></a>
+      </div>
+      <div class="reveal">
+        <h3 class="hd" style="margin-top:0">{d.home.about.chipsTitle}</h3>
+        <ul class="chips">
+          {d.home.about.chips.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="offer">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{d.home.offer.num}</span><span class="lbl">{d.home.offer.kicker}</span></div>
+    <h2 class="reveal">{d.home.offer.title}</h2>
+    <p class="sub reveal">{d.home.offer.sub}</p>
+    <div class="grid c3 reveal">
+      {
+        tracks.map((tr) => (
+          <div class="card">
+            <span class="n">{tr.n}</span>
+            <h3>{tr.title}</h3>
+            <p>{tr.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <a class="more reveal" href={href(locale, '/about/') + '#how'}>{d.home.offer.more} <span aria-hidden="true">{d.arrow}</span></a>
+  </div>
+</section>
+
+<section class="sec" id="program">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{d.home.program.num}</span><span class="lbl">{d.home.program.kicker}</span></div>
+    <h2 class="reveal">{d.home.program.title}</h2>
+    <p class="tag reveal" style="margin:0 0 10px">{d.home.program.tag}</p>
+    <p class="sub reveal">{d.home.program.sub}</p>
+    <div class="stats reveal">
+      {
+        d.camp.stats.map((s) => (
+          <div class="stat">
+            <b class:list={{ w: s.wide }}>{s.v}</b>
+            <span>{s.l}</span>
+          </div>
+        ))
+      }
+    </div>
+    <div class="prose mt reveal">
+      <p>{d.home.program.body}</p>
+    </div>
+    <div class="cta reveal" style="justify-content:flex-start;margin-top:22px">
+      <a class="btn p" href={href(locale, campPath)}>{d.home.program.cta}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="invite">
+  <div class="wrap">
+    <div class="callout reveal">
+      <h3>{d.home.invite.title}</h3>
+      <p>{d.home.invite.body}</p>
+      <div class="cta" style="justify-content:flex-start;margin-top:18px">
+        <a class="btn p" href="#follow">{d.home.invite.cta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

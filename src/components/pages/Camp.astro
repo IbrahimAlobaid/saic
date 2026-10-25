@@ -1,0 +1,205 @@
+---
+import Follow from '../Follow.astro';
+import { t, href, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const c = d.camp;
+---
+
+<section class="sec first" id="camp">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{c.num}</span><span class="lbl">{c.kicker}</span></div>
+    <h1 class="t reveal">{c.title}</h1>
+    <p class="tag reveal" style="margin:0 0 10px">{c.tag}</p>
+    <p class="sub reveal">{c.sub}</p>
+
+    <div class="stats reveal">
+      {
+        c.stats.map((s) => (
+          <div class="stat">
+            <b class:list={{ w: s.wide }}>{s.v}</b>
+            <span>{s.l}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="prose mt reveal">
+      <p set:html={c.introHtml} />
+    </div>
+
+    <div class="grid c2 mt reveal">
+      <div class="card">
+        <h3>{c.method.title}</h3>
+        <ul class="flow" style="margin-top:10px">
+          {
+            c.method.steps.map((step, i) => (
+              <>
+                {i > 0 && (
+                  <li class="ar" aria-hidden="true">
+                    {d.arrow}
+                  </li>
+                )}
+                <li>{step}</li>
+              </>
+            ))
+          }
+        </ul>
+        <h3 style="margin-top:22px">{c.prereq.title}</h3>
+        <p>{c.prereq.body}</p>
+      </div>
+      <div class="card">
+        <h3>{c.audience.title}</h3>
+        <ul class="check" style="margin-top:10px">
+          {c.audience.items.map((x) => <li>{x}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <!-- learning path -->
+    <h3 class="hd reveal" id="path">{c.path.title}</h3>
+    <p class="sub reveal" style="margin-bottom:18px">{c.path.sub}</p>
+    <div class="grid c4 reveal">
+      {
+        c.path.phases.map((ph) => (
+          <div class="card">
+            <span class="n">{ph.n}</span>
+            <h3>{ph.name}</h3>
+            <span class="en-t">{ph.when}</span>
+            <p style="margin-top:8px">{ph.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h3 class="hd reveal" id="sessions">{c.sessions.title}</h3>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col">{c.sessions.cols.n}</th><th scope="col">{c.sessions.cols.s}</th><th scope="col">{c.sessions.cols.o}</th></tr>
+        </thead>
+        <tbody>
+          {
+            c.sessions.rows.map((r) => (
+              <tr>
+                <td class="k">{r.n}</td>
+                <td class="t">{r.s}</td>
+                <td class="d">{r.o}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- capstone -->
+    <h3 class="hd reveal" id="capstone">{c.capstone.title}</h3>
+    <div class="grid c2 reveal">
+      <div>
+        <div class="callout">
+          <h3>{c.capstone.ideaTitle}</h3>
+          <p set:html={c.capstone.ideaHtml} />
+        </div>
+        <h3 style="margin:22px 0 10px;font-size:1.1rem">{c.capstone.examplesTitle}</h3>
+        <ul class="chips">
+          {c.capstone.examples.map((x) => <li>{x}</li>)}
+        </ul>
+        <div class="card" style="margin-top:22px">
+          <h3>{c.capstone.principleTitle}</h3>
+          <p>{c.capstone.principle}</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:16px">{c.capstone.milestonesTitle}</h3>
+        <ol class="tl">
+          {
+            c.capstone.milestones.map((m) => (
+              <li>
+                <b>{m.when}</b>
+                <span>{m.what}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    <!-- training & evaluation -->
+    <h3 class="hd reveal" id="method">{c.training.title}</h3>
+    <p class="sub reveal" style="margin-bottom:18px">{c.training.sub}</p>
+    <div class="grid c3 reveal">
+      {
+        c.training.methods.map((m) => (
+          <div class="card">
+            <h3>{m.title}</h3>
+            <p>{m.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid c2 mt reveal">
+      <div class="card">
+        <h3>{c.training.timelineTitle}</h3>
+        <p style="margin-bottom:14px">{c.training.timelineNote}</p>
+        <div class="bar3" role="img" aria-label={c.training.timelineAria}>
+          {c.training.segments.map((s) => <i style={`--c:${s.color};width:${s.pct}%`} />)}
+        </div>
+        <ul class="legend" aria-hidden="true">
+          {c.training.segments.map((s) => <li style={`--c:${s.color}`}>{s.label}</li>)}
+        </ul>
+      </div>
+      <div class="card">
+        <h3>{c.training.criteriaTitle}</h3>
+        <ul class="chips" style="margin-top:12px">
+          {c.training.criteria.map((x) => <li>{x}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <!-- outcomes -->
+    <h3 class="hd reveal" id="outcomes">{c.outcomes.title}</h3>
+    <div class="grid c2 reveal">
+      <div class="card">
+        <h3 style="margin-bottom:14px">{c.outcomes.abilitiesTitle}</h3>
+        <ul class="check">
+          {c.outcomes.abilities.map((x) => <li>{x}</li>)}
+        </ul>
+      </div>
+      <div>
+        <div class="card">
+          <h3 style="margin-bottom:14px">{c.outcomes.outputsTitle}</h3>
+          <ol class="nums">
+            {
+              c.outcomes.outputs.map((x, i) => (
+                <li>
+                  <b>{locale === 'ar' ? ['١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'][i] : i + 1}</b>
+                  <span>{x}</span>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <div class="callout" style="margin-top:14px">
+          <h3>{c.outcomes.hiringTitle}</h3>
+          <p>{c.outcomes.hiringBody}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- trainers -->
+    <div class="callout mt reveal" id="trainers">
+      <h3>{c.trainers.title}</h3>
+      <p>{c.trainers.body}</p>
+      <div class="cta" style="justify-content:flex-start;margin-top:18px">
+        <a class="btn p" href={href(locale, '/about/') + '#trainers'}>{c.trainers.cta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

@@ -1,0 +1,249 @@
+---
+import Follow from '../Follow.astro';
+import { t, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const a = d.about;
+---
+
+<!-- 01 intro -->
+<section class="sec first" id="about">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.intro.num}</span><span class="lbl">{a.intro.kicker}</span></div>
+    <h1 class="t reveal">{a.intro.title}</h1>
+    <p class="sub reveal">{a.intro.sub}</p>
+    <div class="grid c2">
+      <div class="prose reveal">
+        <p>{a.intro.p1}</p>
+        <p>{a.intro.p2}</p>
+      </div>
+      <div class="reveal">
+        <div class="callout">
+          <h3>{a.intro.calloutTitle}</h3>
+          <p>{a.intro.calloutBody}</p>
+        </div>
+        <h3 class="hd" style="margin-top:22px">{a.intro.chipsTitle}</h3>
+        <ul class="chips">
+          {a.intro.chips.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 story -->
+<section class="sec" id="story">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.story.num}</span><span class="lbl">{a.story.kicker}</span></div>
+    <h2 class="reveal">{a.story.title}</h2>
+    <p class="sub reveal">{a.story.sub}</p>
+    <div class="grid c2 reveal">
+      {
+        a.story.cards.map((c) => (
+          <div class="card">
+            <span class="n">{c.n}</span>
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="prose mt reveal">
+      <p set:html={a.story.p1Html} />
+      <p set:html={a.story.p2Html} />
+    </div>
+    <div class="callout mt reveal">
+      <h3>{a.story.calloutTitle}</h3>
+      <p>{a.story.calloutBody}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 vision & mission -->
+<section class="sec" id="vision">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.vision.num}</span><span class="lbl">{a.vision.kicker}</span></div>
+    <h2 class="reveal">{a.vision.title}</h2>
+    <div class="grid c2">
+      <div class="card reveal">
+        <span class="n">{a.vision.visionLabel}</span>
+        <p style="font-size:1.05rem;color:#fff">{a.vision.visionBody}</p>
+      </div>
+      <div class="card reveal">
+        <span class="n">{a.vision.missionLabel}</span>
+        <p style="font-size:1.05rem;color:#fff">{a.vision.missionBody}</p>
+        <ul class="chips" style="margin-top:14px">
+          {a.vision.missionChips.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+    <h3 class="hd reveal">{a.vision.helpsTitle}</h3>
+    <div class="grid c3 reveal">
+      {
+        a.vision.helps.map((h) => (
+          <div class="card">
+            <span class="n">{h.n}</span>
+            <h3>{h.title}</h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 04 goals -->
+<section class="sec" id="goals">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.goals.num}</span><span class="lbl">{a.goals.kicker}</span></div>
+    <h2 class="reveal">{a.goals.title}</h2>
+    <div class="grid c3 reveal">
+      {
+        a.goals.items.map((g) => (
+          <div class="card">
+            <span class="n">{g.n}</span>
+            <h3>{g.title}</h3>
+            <p>{g.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 05 how -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.how.num}</span><span class="lbl">{a.how.kicker}</span></div>
+    <h2 class="reveal">{a.how.title}</h2>
+    <div class="grid c2 reveal">
+      {
+        a.how.tracks.map((tr) => (
+          <div class="card">
+            <span class="n">{tr.n}</span>
+            <h3>{tr.title}</h3>
+            <p>{tr.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="callout mt reveal">
+      <h3>{a.how.fifth.n} · {a.how.fifth.title}</h3>
+      <p>{a.how.fifth.body}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 who -->
+<section class="sec" id="who">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.who.num}</span><span class="lbl">{a.who.kicker}</span></div>
+    <h2 class="reveal">{a.who.title}</h2>
+    <p class="sub reveal">{a.who.sub}</p>
+    <div class="ledger reveal">
+      <div class="row h"><span>{a.who.colA}</span><span>{a.who.colB}</span></div>
+      {
+        a.who.rows.map((r) => (
+          <div class="row">
+            <b>{r.a}</b>
+            <p>{r.b}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="prose mt reveal" style="color:var(--ice);margin-bottom:0" set:html={a.who.noteHtml} />
+  </div>
+</section>
+
+<!-- 07 values -->
+<section class="sec" id="values">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.values.num}</span><span class="lbl">{a.values.kicker}</span></div>
+    <h2 class="reveal">{a.values.title}</h2>
+    <div class="grid c3 reveal">
+      {
+        a.values.items.map((v) => (
+          <div class="card">
+            <h3>{v.title}</h3>
+            <p>{v.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 08 team -->
+<section class="sec" id="team">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.team.num}</span><span class="lbl">{a.team.kicker}</span></div>
+    <h2 class="reveal">{a.team.title}</h2>
+    <p class="sub reveal">{a.team.sub}</p>
+
+    <h3 class="hd reveal" id="trainers">{a.team.trainers.title}</h3>
+    <p class="sub reveal" style="margin-bottom:18px">{a.team.trainers.sub}</p>
+    <div class="grid people reveal">
+      {
+        a.team.trainers.items.map((p) => (
+          <div class="card person">
+            <span class="ava" aria-hidden="true">{p.initial}</span>
+            <div>
+              <h3>{p.name}</h3>
+              <p>{p.bio}</p>
+              <a href={p.url} target="_blank" rel="noopener">{p.handle}</a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="prose mt reveal" style="color:var(--mist);font-size:.95rem;margin-bottom:0">{a.team.soon}</p>
+  </div>
+</section>
+
+<!-- 09 impact -->
+<section class="sec" id="impact">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{a.impact.num}</span><span class="lbl">{a.impact.kicker}</span></div>
+    <h2 class="reveal">{a.impact.title}</h2>
+    <p class="sub reveal">{a.impact.sub}</p>
+    <ul class="flow reveal">
+      {
+        a.impact.chain.map((step, i) => (
+          <>
+            {i > 0 && (
+              <li class="ar" aria-hidden="true">
+                {d.arrow}
+              </li>
+            )}
+            <li>{step}</li>
+          </>
+        ))
+      }
+    </ul>
+    <div class="grid c2 mt reveal">
+      <div class="card">
+        <h3 style="margin-bottom:14px">{a.impact.aspireTitle}</h3>
+        <ul class="check">
+          {a.impact.aspire.map((x) => <li>{x}</li>)}
+        </ul>
+      </div>
+      <div class="callout">
+        <h3>{a.impact.invite.title}</h3>
+        <p>{a.impact.invite.lead}</p>
+        <ul class="chips" style="margin:14px 0 16px">
+          {a.impact.invite.chips.map((c) => <li>{c}</li>)}
+        </ul>
+        <p>{a.impact.invite.body}</p>
+        <div class="cta" style="justify-content:flex-start;margin-top:18px">
+          <a class="btn p" href="#follow">{a.impact.invite.cta}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

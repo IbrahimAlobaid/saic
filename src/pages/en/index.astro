@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/pages/Home.astro';
+import { t } from '../../i18n';
+import { organizationJsonLd } from '../../lib/seo';
+
+const locale = 'en' as const;
+const d = t(locale);
+---
+
+<Base locale={locale} title={d.meta.home.title} description={d.meta.home.description} path="/" jsonLd={organizationJsonLd(locale, Astro.site)}>
+  <Home locale={locale} />
+</Base>

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.claude/
+npm-debug.log*
+.DS_Store
+saic-qr.png
+saic-qr.svg
+dist-preview/

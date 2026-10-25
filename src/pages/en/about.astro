@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import About from '../../components/pages/About.astro';
+import { t } from '../../i18n';
+
+const locale = 'en' as const;
+const d = t(locale);
+---
+
+<Base locale={locale} title={d.meta.about.title} description={d.meta.about.description} path="/about/">
+  <About locale={locale} />
+</Base>

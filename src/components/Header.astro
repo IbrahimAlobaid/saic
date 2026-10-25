@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/mark.png';
+import { t, href, otherLocale, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  path: string;
+}
+
+const { locale, path } = Astro.props;
+const d = t(locale);
+const other = otherLocale(locale);
+const isActive = (itemPath: string) => itemPath === path;
+---
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href={href(locale, '/')} aria-label={d.nav.brandAria}>
+      <Image src={mark} alt="" width={46} densities={[1, 2, 3]} format="webp" />
+      <span>SAIC</span>
+    </a>
+    <nav aria-label={locale === 'ar' ? 'أقسام الموقع' : 'Site sections'}>
+      <ul>
+        {
+          d.nav.items.map((item) => (
+            <li>
+              <a href={href(locale, item.path)} class:list={{ on: isActive(item.path) }} aria-current={isActive(item.path) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a class="lang" href={href(other, path)} lang={other} hreflang={other} aria-label={d.nav.switchAria}>
+      {d.nav.switchLabel}
+    </a>
+  </div>
+</header>

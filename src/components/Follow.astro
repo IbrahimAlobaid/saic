@@ -1,0 +1,56 @@
+---
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+
+const icons: Record<string, string> = {
+  linkedin:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#1da4b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>',
+  facebook:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#1da4b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.8c2 .7 3.2 2.4 3.5 5.2"/></svg>',
+  instagram:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#1da4b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="#1da4b8"/></svg>',
+  youtube:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#1da4b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="#1da4b8"/></svg>',
+};
+---
+
+<section class="sec" id="follow">
+  <div class="wrap">
+    <div class="follow-col">
+      <div class="kicker reveal"><span class="lbl">{d.follow.kicker}</span></div>
+      <h2 class="reveal">{d.follow.title}</h2>
+      <p class="sub reveal" style="margin-inline:auto">{d.follow.sub}</p>
+      <ul class="links reveal">
+        {
+          d.follow.links.map((l) => (
+            <li>
+              <a href={l.href} target="_blank" rel="noopener">
+                <span class="ico" aria-hidden="true" set:html={icons[l.icon]} />
+                <span class="txt">
+                  <span class="name">
+                    {l.name}
+                    {l.platform && <small>{l.platform}</small>}
+                  </span>
+                  <span class="handle">{l.handle}</span>
+                </span>
+                <span class="go" aria-hidden="true">{locale === 'ar' ? '›' : '›'}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="contact reveal">
+        <span>{d.follow.contactTitle}</span>
+        <a href={`mailto:${d.follow.email}`}>{d.follow.email}</a>
+        <a href={d.follow.linkedinHref} target="_blank" rel="noopener">{d.follow.linkedinText}</a>
+        <a href="https://syrianai.org/">{d.follow.siteText}</a>
+      </div>
+    </div>
+  </div>
+</section>

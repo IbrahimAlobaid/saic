@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Camp from '../../components/pages/Camp.astro';
+import { t } from '../../i18n';
+
+const locale = 'ar' as const;
+const d = t(locale);
+---
+
+<Base locale={locale} title={d.meta.camp.title} description={d.meta.camp.description} path="/programs/ai-engineering-camp/">
+  <Camp locale={locale} />
+</Base>

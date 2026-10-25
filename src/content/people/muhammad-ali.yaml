@@ -5,4 +5,12 @@ roles: [founder]
 title:
   ar: "مؤسس مشارك ومدير المجتمع"
   en: "Co-founder and Community Manager"
+bio:
+  ar: "مهندس برمجيات، ومدير مبادرات وفرق تقنية في سوريا."
+  en: "Software engineer, and manager of technical initiatives and teams in Syria."
+photo: ./photos/muhammad-ali.jpg
+links:
+  linkedin: "https://www.linkedin.com/in/muhammad-ali-51ba823b8"
+  facebook: "https://www.facebook.com/share/1Dzi9tX1Vy/"
+  instagram: "https://www.instagram.com/muhammad_ali7_9"
 order: 2

@@ -434,7 +434,7 @@ export const en: Dict = {
     teams: { logistics: 'Logistics team', media: 'Media team', relations: 'Relations team' },
     events: 'Events they took part in',
     projects: 'Projects they worked on',
-    links: { linkedin: 'LinkedIn', github: 'GitHub', website: 'Website', x: 'X' },
+    links: { linkedin: 'LinkedIn', github: 'GitHub', website: 'Website', x: 'X', facebook: 'Facebook', instagram: 'Instagram' },
     backToTeam: 'Whole team',
   },
 

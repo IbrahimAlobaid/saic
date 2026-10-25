@@ -432,7 +432,7 @@ export const ar = {
     teams: { logistics: 'فريق اللوجستيات', media: 'فريق الميديا', relations: 'فريق العلاقات' },
     events: 'فعاليات شارك فيها',
     projects: 'مشاريع شارك فيها',
-    links: { linkedin: 'لينكدإن', github: 'GitHub', website: 'الموقع', x: 'X' },
+    links: { linkedin: 'لينكدإن', github: 'GitHub', website: 'الموقع', x: 'X', facebook: 'فيسبوك', instagram: 'إنستغرام' },
     backToTeam: 'كل الفريق',
   },
 

@@ -11,6 +11,8 @@ const links = z
     github: z.string().url().optional(),
     website: z.string().url().optional(),
     x: z.string().url().optional(),
+    facebook: z.string().url().optional(),
+    instagram: z.string().url().optional(),
   })
   .default({});
 

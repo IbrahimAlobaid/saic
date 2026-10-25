@@ -49,7 +49,7 @@ export const en: Dict = {
   hero: {
     logoAlt: 'Syrian AI Community logo - مجتمع الذكاء الاصطناعي السوري',
     title: 'Syrian AI Community',
-    tag: 'مجتمع الذكاء الاصطناعي السوري · PROFILE 2026',
+    tag: 'SYRIAN AI COMMUNITY · PROFILE 2026',
     lead: 'We believe knowledge grows when it is shared, and that opportunities are created when a passion for learning meets the spirit of initiative.',
     motto: 'Learn together · Share experience · Build opportunities',
     ctaFollow: 'Follow us',
@@ -79,7 +79,7 @@ export const en: Dict = {
       num: '03',
       kicker: 'A sample of our activities',
       title: 'AI Engineering Camp',
-      tag: 'معسكر هندسة الذكاء الاصطناعي',
+      tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
       sub: 'From understanding AI models to building demo-ready, deployable AI products.',
       body: 'An advanced, hands-on training camp for final-year students and graduates of technical majors. It combines model building, AI systems engineering, teamwork, and the development of a final project.',
       cta: 'Full camp details',
@@ -249,7 +249,7 @@ export const en: Dict = {
     num: '08',
     kicker: 'A sample of our activities',
     title: 'AI Engineering Camp',
-    tag: 'معسكر هندسة الذكاء الاصطناعي',
+    tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
     sub: 'From understanding AI models to building demo-ready, deployable AI products.',
     stats: [
       { v: '10', l: 'training sessions', wide: false },

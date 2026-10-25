@@ -25,6 +25,14 @@ export const ar = {
       description:
         'معسكر تطبيقي متقدم من عشر جلسات وثلاثين ساعة: من فهم نماذج الذكاء الاصطناعي إلى بناء منتجات AI جاهزة للعرض والنشر، مع مشروع تخرج جماعي وترشيح للتوظيف.',
     },
+    events: {
+      title: 'الفعاليات · مجتمع الذكاء الاصطناعي السوري',
+      description: 'ورشات ولقاءات ومعسكرات مجتمع الذكاء الاصطناعي السوري: القادمة منها والسابقة، مع روابط التسجيل والتسجيلات المرئية.',
+    },
+    projects: {
+      title: 'الأعمال والمشاريع · مجتمع الذكاء الاصطناعي السوري',
+      description: 'مشاريع تخرج ومبادرات يبنيها أعضاء مجتمع الذكاء الاصطناعي السوري، مع الفرق والتقنيات وروابط المستودعات والعروض.',
+    },
     notFound: {
       title: 'الصفحة غير موجودة · مجتمع الذكاء الاصطناعي السوري',
       description: 'الصفحة التي تبحث عنها غير موجودة.',
@@ -37,6 +45,8 @@ export const ar = {
     items: [
       { label: 'الرئيسية', path: '/' },
       { label: 'من نحن', path: '/about/' },
+      { label: 'الفعاليات', path: '/events/' },
+      { label: 'المشاريع', path: '/projects/' },
       { label: 'المعسكر', path: '/programs/ai-engineering-camp/' },
       { label: 'تابعونا', path: '/#follow' },
     ],
@@ -66,15 +76,30 @@ export const ar = {
       chips: ['الطلاب والخريجين', 'المطورين', 'المهتمين بالذكاء الاصطناعي', 'أصحاب الخبرة والمدربين'],
       more: 'اقرأ حكايتنا ورؤيتنا وأهدافنا',
     },
-    offer: {
+    events: {
       num: '٠٢',
+      kicker: 'الفعاليات',
+      title: 'الفعاليات القادمة',
+      sub: 'ورشات ولقاءات ومعسكرات مفتوحة للمهتمين.',
+      all: 'كل الفعاليات',
+      none: 'لا توجد فعاليات قادمة حاليًا، وسنعلن عن الجديد على منصاتنا.',
+    },
+    projects: {
+      num: '٠٣',
+      kicker: 'الأعمال',
+      title: 'أحدث أعمال المجتمع',
+      sub: 'مشاريع تخرج ومبادرات يبنيها الأعضاء.',
+      all: 'كل المشاريع',
+    },
+    offer: {
+      num: '٠٤',
       kicker: 'كيف نعمل',
       title: 'خمسة مسارات تنقل المعرفة من القاعة إلى التطبيق',
       sub: 'ورشات ومعسكرات ومشاركة خبرات وبناء مشروعات وتواصل يتجاوز الحدود.',
       more: 'تفاصيل مسارات العمل',
     },
     program: {
-      num: '٠٣',
+      num: '٠٥',
       kicker: 'نموذج من أنشطتنا',
       title: 'معسكر هندسة الذكاء الاصطناعي',
       tag: 'AI ENGINEERING CAMP',
@@ -203,21 +228,11 @@ export const ar = {
       kicker: 'الفريق',
       title: 'من يقف خلف المجتمع',
       sub: 'مؤسسون ومدربون ومتطوعون يعملون معًا لتقريب المعرفة والخبرة من الشباب السوري.',
-      trainers: {
-        title: 'المدربون',
-        sub: 'ثمانية مهندسين وخبراء يعملون في شركات محلية وعالمية.',
-        items: [
-          { initial: 'إ', name: 'م. إبراهيم العبيد', bio: 'مهندس ذكاء اصطناعي، قائد فريق الذكاء الاصطناعي ومدير المشروع في شركة Cardiac Rhythm في الولايات المتحدة. عمل مع شركات محلية وعالمية.', url: 'https://linkedin.com/in/ibrahimalobaid44', handle: 'linkedin.com/in/ibrahimalobaid44' },
-          { initial: 'أ', name: 'م. أسامة أبو حجر', bio: 'مهندس برمجيات في Microsoft، عمل سابقًا على تطوير برمجيات شبكات الجيل الخامس 5G في Ericsson. حاصل على ماجستير في الذكاء الاصطناعي، ومؤسس مبادرة GitSyria.', url: 'https://linkedin.com/in/oabouhajar', handle: 'linkedin.com/in/oabouhajar' },
-          { initial: 'م', name: 'م. محمد زين العابدين مهروسة', bio: 'مهندس ذكاء اصطناعي ومدير فريق الذكاء الاصطناعي في شركة DAWMT في البحرين، بخبرة ثلاث سنوات في شركات عالمية.', url: 'https://linkedin.com/in/zayn-mahrouseh', handle: 'linkedin.com/in/zayn-mahrouseh' },
-          { initial: 'م', name: 'م. محمد غزال قصاص', bio: 'مهندس ذكاء اصطناعي في شركة Amani AI، متخصص في معالجة اللغات الطبيعية وتطوير الأنظمة الذكية ووكلاء الذكاء الاصطناعي.', url: 'https://linkedin.com/in/mohammad-ghazal-kassas-b65b57292', handle: 'linkedin.com/in/mohammad-ghazal-kassas' },
-          { initial: 'ي', name: 'م. ياسين عبد المهدي', bio: 'يعمل حاليًا Lead AI Engineer في شركة BeSmart.ai، ومدرّسًا في جامعة الشام الخاصة (ASPU).', url: 'https://linkedin.com/in/yassin-abdulmahdi', handle: 'linkedin.com/in/yassin-abdulmahdi' },
-          { initial: 'س', name: 'م. سعد شحرور', bio: 'مؤسس شركة Pactonic AI، والمدير التقني (CTO) لشركة Karriya AI في السويد، إضافة إلى منصب Head of AI في شركة Capital Zone في البرتغال.', url: 'https://linkedin.com/in/saad-shahrour', handle: 'linkedin.com/in/saad-shahrour' },
-          { initial: 'س', name: 'م. سعد شياح', bio: 'مهندس برمجيات في Basira Foundation، متخصص في بناء وتطوير أنظمة التحكم بالإصدارات وإدارة المنتجات البرمجية.', url: 'https://linkedin.com/in/saad-shayah', handle: 'linkedin.com/in/saad-shayah' },
-          { initial: 'ح', name: 'م. حسين سعود', bio: 'مهندس برمجيات ومهندس ذكاء اصطناعي وموجّه تقني في FICEP ME، يجمع بين الابتكار القائم على البيانات وتمكين الفرق التقنية لتطوير حلول برمجية متقدمة.', url: 'https://linkedin.com/in/hussain-saoud', handle: 'linkedin.com/in/hussain-saoud' },
-        ],
-      },
-      soon: 'قوائم المؤسسين والمتطوعين بفرق اللوجستيات والميديا والعلاقات تُضاف في المرحلة التالية.',
+      founders: { title: 'المؤسسون', sub: 'الفريق الذي أطلق المبادرة ويقود مسارها.' },
+      trainers: { title: 'المدربون', sub: 'مهندسون وخبراء يعملون في شركات محلية وعالمية.' },
+      volunteers: { title: 'المتطوعون', sub: 'ثلاثة فرق تدير اللوجستيات والميديا والعلاقات.' },
+      empty: 'سيُضاف الأعضاء قريبًا.',
+      view: 'الملف الكامل',
     },
     impact: {
       num: '٠٩',
@@ -367,6 +382,57 @@ export const ar = {
       body: 'يقود المعسكر ثمانية مهندسين وخبراء يعملون في شركات محلية وعالمية. تعرّف عليهم في صفحة الفريق.',
       cta: 'تعرّف على المدربين',
     },
+  },
+
+  common: {
+    placeholder: 'بيانات مؤقتة',
+    placeholderNote: 'هذه البطاقات بيانات مؤقتة للعرض وستُستبدل بالقوائم الحقيقية.',
+    details: 'التفاصيل',
+    back: 'عودة',
+    inArabic: 'بالعربية',
+  },
+
+  events: {
+    kicker: 'الفعاليات',
+    title: 'فعاليات المجتمع',
+    sub: 'ورشات ولقاءات ومعسكرات تنقل المعرفة من القاعة إلى التطبيق. القادمة منها مفتوحة للتسجيل، والسابقة موثقة بتسجيلاتها.',
+    upcoming: 'الفعاليات القادمة',
+    past: 'فعاليات سابقة',
+    none: 'لا توجد فعاليات قادمة حاليًا. تابعونا على المنصات لمعرفة الجديد.',
+    register: 'سجّل الآن',
+    recording: 'شاهد التسجيل',
+    joinLink: 'رابط الحضور',
+    speakers: 'المتحدثون',
+    when: 'الموعد',
+    where: 'المكان',
+    online: 'عبر الإنترنت',
+    program: 'ضمن برنامج',
+    tags: 'الوسوم',
+    backToList: 'كل الفعاليات',
+    type: { workshop: 'ورشة', camp: 'معسكر', meetup: 'لقاء', hackathon: 'هاكاثون', webinar: 'ويبينار' },
+    status: { upcoming: 'قادمة', past: 'انتهت', cancelled: 'أُلغيت' },
+  },
+
+  projects: {
+    kicker: 'الأعمال والمشاريع',
+    title: 'أعمال المجتمع ومشاريعه',
+    sub: 'مشاريع تخرج المعسكرات ومشاريع الأعضاء ومبادرات المجتمع، بفرقها وتقنياتها وروابطها.',
+    team: 'الفريق',
+    tech: 'التقنيات',
+    program: 'البرنامج',
+    year: 'السنة',
+    award: 'الجائزة',
+    links: { repo: 'المستودع', demo: 'العرض التجريبي', video: 'الفيديو', slides: 'الشرائح' },
+    backToList: 'كل المشاريع',
+  },
+
+  people: {
+    roles: { founder: 'مؤسس', trainer: 'مدرب', volunteer: 'متطوع' },
+    teams: { logistics: 'فريق اللوجستيات', media: 'فريق الميديا', relations: 'فريق العلاقات' },
+    events: 'فعاليات شارك فيها',
+    projects: 'مشاريع شارك فيها',
+    links: { linkedin: 'لينكدإن', github: 'GitHub', website: 'الموقع', x: 'X' },
+    backToTeam: 'كل الفريق',
   },
 
   follow: {

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import Follow from '../Follow.astro';
+import EventCard from '../EventCard.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { t, href, type Locale } from '../../i18n';
+import { tx, isFallback, paragraphs, initial, personActivity, type Person } from '../../lib/content';
+
+interface Props {
+  locale: Locale;
+  person: Person;
+}
+
+const { locale, person } = Astro.props;
+const d = t(locale);
+const p = person.data;
+const name = tx(p.name, locale);
+const title = tx(p.title, locale);
+const bio = p.bio ? paragraphs(tx(p.bio, locale)) : [];
+const bioFallback = isFallback(p.bio, locale);
+const { events, projects } = await personActivity(person);
+const backArrow = locale === 'ar' ? '→' : '←';
+const linkKeys = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) => p.links[k]);
+---
+
+<section class="sec first">
+  <div class="wrap">
+    <a class="more" href={href(locale, '/about/') + '#team'} style="margin:0 0 18px"><span aria-hidden="true">{backArrow}</span> {d.people.backToTeam}</a>
+    <div class="person-head">
+      <span class="ava lg" aria-hidden="true">
+        {p.photo ? <Image src={p.photo} alt="" width={240} height={240} format="webp" /> : initial(name)}
+      </span>
+      <div>
+        <div class="roles" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+          {p.roles.map((r) => <span class="pill">{d.people.roles[r]}</span>)}
+          {p.team && <span class="pill past">{d.people.teams[p.team]}</span>}
+          {p.placeholder && <span class="ph">{d.common.placeholder}</span>}
+        </div>
+        <h1 class="t" style="margin:0">{name}</h1>
+        {title && <p class="sub" style="margin:6px 0 0;color:#fff;font-weight:700">{title}</p>}
+      </div>
+    </div>
+
+    {
+      bio.length > 0 && (
+        <div class="prose mt" lang={bioFallback ? 'ar' : undefined} dir={bioFallback ? 'rtl' : undefined} style="max-width:760px">
+          {bio.map((x) => (
+            <p>{x}</p>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      linkKeys.length > 0 && (
+        <ul class="links-row">
+          {linkKeys.map((k) => (
+            <li>
+              <a href={p.links[k]} target="_blank" rel="noopener">
+                {d.people.links[k]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      events.length > 0 && (
+        <>
+          <h2 class="hd">{d.people.events}</h2>
+          <div class="grid c2">
+            {events.map((e) => (
+              <EventCard locale={locale} event={e} />
+            ))}
+          </div>
+        </>
+      )
+    }
+    {
+      projects.length > 0 && (
+        <>
+          <h2 class="hd">{d.people.projects}</h2>
+          <div class="grid c3">
+            {projects.map((pr) => (
+              <ProjectCard locale={locale} project={pr} />
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</section>
+
+<Follow locale={locale} />

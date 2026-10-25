@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import { t, href, type Locale } from '../i18n';
+import { tx, initial, type Person } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+  person: Person;
+  showTeam?: boolean;
+}
+
+const { locale, person, showTeam = true } = Astro.props;
+const d = t(locale);
+const p = person.data;
+const name = tx(p.name, locale);
+const bio = tx(p.bio, locale);
+const title = tx(p.title, locale);
+const url = href(locale, `/about/${person.id}/`);
+const roleLabels = p.roles.map((r) => d.people.roles[r]);
+const teamLabel = p.team ? d.people.teams[p.team] : '';
+const linkedin = p.links.linkedin;
+---
+
+<article class="card person">
+  <a class="ava" href={url} aria-hidden="true" tabindex="-1">
+    {p.photo ? <Image src={p.photo} alt="" width={104} height={104} format="webp" /> : initial(name)}
+  </a>
+  <div style="min-width:0">
+    <h3>
+      <a href={url} style="color:#fff;text-decoration:none">{name}</a>
+      {p.placeholder && <span class="ph">{d.common.placeholder}</span>}
+    </h3>
+    <div class="roles">
+      {roleLabels.map((r) => <span class="pill">{r}</span>)}
+      {showTeam && teamLabel && <span class="pill past">{teamLabel}</span>}
+    </div>
+    {title && <p style="color:#fff;font-weight:700;margin-bottom:4px">{title}</p>}
+    {bio && <p>{bio}</p>}
+    {linkedin && (
+      <a href={linkedin} target="_blank" rel="noopener">
+        {linkedin.replace(/^https?:\/\/(www\.)?/, '')}
+      </a>
+    )}
+  </div>
+</article>

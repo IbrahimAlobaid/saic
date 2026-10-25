@@ -1,0 +1,35 @@
+---
+import { t, href, type Locale } from '../i18n';
+import { tx, fmtRange, eventStatus, eventWhere, calendarParts, type Event } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+  event: Event;
+}
+
+const { locale, event } = Astro.props;
+const d = t(locale);
+const e = event.data;
+const status = eventStatus(event);
+const url = href(locale, `/events/${event.id}/`);
+const { day, month } = calendarParts(e.start, locale);
+const where = eventWhere(e.location, locale, d.events.online);
+---
+
+<article class="card evt">
+  <div class="date" aria-hidden="true"><b>{day}</b><span>{month}</span></div>
+  <div class="body">
+    <div class="top">
+      <span class="pill">{d.events.type[e.type]}</span>
+      <span class:list={['pill', status]}>{d.events.status[status]}</span>
+      {e.placeholder && <span class="ph">{d.common.placeholder}</span>}
+    </div>
+    <h3><a href={url} style="color:#fff;text-decoration:none">{tx(e.title, locale)}</a></h3>
+    <ul class="meta">
+      <li>{fmtRange(e.start, e.end, locale)}</li>
+      {where && <li>{where}</li>}
+    </ul>
+    <p style="margin-top:8px">{tx(e.summary, locale)}</p>
+    <a class="more" href={url}>{d.common.details} <span aria-hidden="true">{d.arrow}</span></a>
+  </div>
+</article>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EventPage from '../../components/pages/EventPage.astro';
+import { t } from '../../i18n';
+import { tx } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+}
+
+const locale = 'ar' as const;
+const d = t(locale);
+const { event } = Astro.props;
+---
+
+<Base
+  locale={locale}
+  title={`${tx(event.data.title, locale)} · ${d.meta.siteName}`}
+  description={tx(event.data.summary, locale)}
+  path={`/events/${event.id}/`}
+>
+  <EventPage locale={locale} event={event} />
+</Base>

@@ -1,0 +1,29 @@
+---
+import Follow from '../Follow.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { t, type Locale } from '../../i18n';
+import { allProjects } from '../../lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const projects = await allProjects();
+const anyPlaceholder = projects.some((p) => p.data.placeholder);
+---
+
+<section class="sec first" id="projects">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="lbl">{d.projects.kicker}</span></div>
+    <h1 class="t reveal">{d.projects.title}</h1>
+    <p class="sub reveal">{d.projects.sub}</p>
+    {anyPlaceholder && <p class="ph-note reveal">{d.common.placeholderNote}</p>}
+    <div class="grid c3 reveal">
+      {projects.map((p) => <ProjectCard locale={locale} project={p} />)}
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

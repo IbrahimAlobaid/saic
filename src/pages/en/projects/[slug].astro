@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import ProjectPage from '../../../components/pages/ProjectPage.astro';
+import { t } from '../../../i18n';
+import { tx } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const locale = 'en' as const;
+const d = t(locale);
+const { project } = Astro.props;
+---
+
+<Base
+  locale={locale}
+  title={`${tx(project.data.title, locale)} · ${d.meta.siteName}`}
+  description={tx(project.data.summary, locale)}
+  path={`/projects/${project.id}/`}
+>
+  <ProjectPage locale={locale} project={project} />
+</Base>

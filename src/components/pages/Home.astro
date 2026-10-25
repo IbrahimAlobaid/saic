@@ -3,7 +3,10 @@ import { Image } from 'astro:assets';
 import logo from '../../assets/logo.png';
 import mark from '../../assets/mark.png';
 import Follow from '../Follow.astro';
+import EventCard from '../EventCard.astro';
+import ProjectCard from '../ProjectCard.astro';
 import { t, href, type Locale } from '../../i18n';
+import { splitEvents, allProjects } from '../../lib/content';
 
 interface Props {
   locale: Locale;
@@ -13,6 +16,10 @@ const { locale } = Astro.props;
 const d = t(locale);
 const tracks = [...d.about.how.tracks, d.about.how.fifth];
 const campPath = '/programs/ai-engineering-camp/';
+const { upcoming } = await splitEvents();
+const nextEvents = upcoming.slice(0, 3);
+const projects = await allProjects();
+const featured = [...projects.filter((p) => p.data.featured), ...projects.filter((p) => !p.data.featured)].slice(0, 3);
 ---
 
 <section class="hero">
@@ -49,6 +56,38 @@ const campPath = '/programs/ai-engineering-camp/';
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="events">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{d.home.events.num}</span><span class="lbl">{d.home.events.kicker}</span></div>
+    <h2 class="reveal">{d.home.events.title}</h2>
+    <p class="sub reveal">{d.home.events.sub}</p>
+    {
+      nextEvents.length > 0 ? (
+        <div class="grid c2 reveal">
+          {nextEvents.map((e) => (
+            <EventCard locale={locale} event={e} />
+          ))}
+        </div>
+      ) : (
+        <p class="sub reveal">{d.home.events.none}</p>
+      )
+    }
+    <a class="more reveal" href={href(locale, '/events/')}>{d.home.events.all} <span aria-hidden="true">{d.arrow}</span></a>
+  </div>
+</section>
+
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="num">{d.home.projects.num}</span><span class="lbl">{d.home.projects.kicker}</span></div>
+    <h2 class="reveal">{d.home.projects.title}</h2>
+    <p class="sub reveal">{d.home.projects.sub}</p>
+    <div class="grid c3 reveal">
+      {featured.map((p) => <ProjectCard locale={locale} project={p} />)}
+    </div>
+    <a class="more reveal" href={href(locale, '/projects/')}>{d.home.projects.all} <span aria-hidden="true">{d.arrow}</span></a>
   </div>
 </section>
 

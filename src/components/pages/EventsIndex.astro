@@ -1,0 +1,54 @@
+---
+import Follow from '../Follow.astro';
+import EventCard from '../EventCard.astro';
+import { t, type Locale } from '../../i18n';
+import { splitEvents } from '../../lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const { upcoming, past } = await splitEvents();
+const anyPlaceholder = [...upcoming, ...past].some((e) => e.data.placeholder);
+---
+
+<section class="sec first" id="events">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="lbl">{d.events.kicker}</span></div>
+    <h1 class="t reveal">{d.events.title}</h1>
+    <p class="sub reveal">{d.events.sub}</p>
+    {anyPlaceholder && <p class="ph-note reveal">{d.common.placeholderNote}</p>}
+
+    <h2 class="hd reveal" id="upcoming">{d.events.upcoming}</h2>
+    {
+      upcoming.length > 0 ? (
+        <div class="grid c2 reveal">
+          {upcoming.map((e) => (
+            <EventCard locale={locale} event={e} />
+          ))}
+        </div>
+      ) : (
+        <p class="sub reveal">{d.events.none}</p>
+      )
+    }
+
+    {
+      past.length > 0 && (
+        <>
+          <h2 class="hd reveal" id="past">
+            {d.events.past}
+          </h2>
+          <div class="grid c2 reveal">
+            {past.map((e) => (
+              <EventCard locale={locale} event={e} />
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</section>
+
+<Follow locale={locale} />

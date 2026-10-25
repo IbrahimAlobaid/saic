@@ -1,0 +1,10 @@
+name:
+  ar: "م. سعد شياح"
+  en: "Eng. Saad Shayah"
+roles: [trainer]
+bio:
+  ar: "مهندس برمجيات في Basira Foundation، متخصص في بناء وتطوير أنظمة التحكم بالإصدارات وإدارة المنتجات البرمجية."
+  en: "Software engineer at Basira Foundation, specializing in version control systems and software product management."
+links:
+  linkedin: "https://linkedin.com/in/saad-shayah"
+order: 7

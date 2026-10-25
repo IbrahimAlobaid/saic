@@ -1,0 +1,122 @@
+---
+import { getEntry } from 'astro:content';
+import Follow from '../Follow.astro';
+import PersonCard from '../PersonCard.astro';
+import { t, href, type Locale } from '../../i18n';
+import { tx, isFallback, paragraphs, fmtRange, eventStatus, eventWhere, resolvePeople, type Event } from '../../lib/content';
+
+interface Props {
+  locale: Locale;
+  event: Event;
+}
+
+const { locale, event } = Astro.props;
+const d = t(locale);
+const e = event.data;
+const status = eventStatus(event);
+const speakers = await resolvePeople(e.speakers);
+const program = e.program ? await getEntry(e.program) : undefined;
+const where = eventWhere(e.location, locale, d.events.online);
+const body = e.body ? paragraphs(tx(e.body, locale)) : [];
+const bodyFallback = isFallback(e.body, locale);
+const backArrow = locale === 'ar' ? '→' : '←';
+---
+
+<section class="sec first">
+  <div class="wrap">
+    <a class="more" href={href(locale, '/events/')} style="margin:0 0 14px"><span aria-hidden="true">{backArrow}</span> {d.events.backToList}</a>
+    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px">
+      <span class="pill">{d.events.type[e.type]}</span>
+      <span class:list={['pill', status]}>{d.events.status[status]}</span>
+      {e.placeholder && <span class="ph">{d.common.placeholder}</span>}
+    </div>
+    <h1 class="t">{tx(e.title, locale)}</h1>
+    <p class="sub">{tx(e.summary, locale)}</p>
+
+    <div class="detail">
+      <div>
+        {
+          body.length > 0 && (
+            <div class="prose" lang={bodyFallback ? 'ar' : undefined} dir={bodyFallback ? 'rtl' : undefined}>
+              {body.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          )
+        }
+        {
+          speakers.length > 0 && (
+            <>
+              <h2 class="section-sub">{d.events.speakers}</h2>
+              <div class="grid c2">
+                {speakers.map((p) => (
+                  <PersonCard locale={locale} person={p} />
+                ))}
+              </div>
+            </>
+          )
+        }
+      </div>
+
+      <aside class="aside">
+        <div class="card">
+          <h3>{d.events.when}</h3>
+          <p style="color:#fff;font-weight:700">{fmtRange(e.start, e.end, locale)}</p>
+          {
+            where && (
+              <>
+                <h3 style="margin-top:14px">{d.events.where}</h3>
+                <p style="color:#fff">{where}</p>
+              </>
+            )
+          }
+          {
+            (e.registrationUrl || e.location.url || e.recordingUrl) && (
+              <div class="cta" style="justify-content:flex-start;margin-top:16px">
+                {status === 'upcoming' && e.registrationUrl && (
+                  <a class="btn p" href={e.registrationUrl} target="_blank" rel="noopener">
+                    {d.events.register}
+                  </a>
+                )}
+                {status === 'upcoming' && e.location.url && (
+                  <a class="btn" href={e.location.url} target="_blank" rel="noopener">
+                    {d.events.joinLink}
+                  </a>
+                )}
+                {e.recordingUrl && (
+                  <a class="btn" href={e.recordingUrl} target="_blank" rel="noopener">
+                    {d.events.recording}
+                  </a>
+                )}
+              </div>
+            )
+          }
+        </div>
+        {
+          program && (
+            <div class="card">
+              <h3>{d.events.program}</h3>
+              <a href={href(locale, program.data.path ?? '/')} style="color:#fff;font-weight:800;text-decoration:none">
+                {tx(program.data.title, locale)}
+              </a>
+            </div>
+          )
+        }
+        {
+          e.tags.length > 0 && (
+            <div class="card">
+              <h3>{d.events.tags}</h3>
+              <ul class="tags" style="margin:0">
+                {e.tags.map((x) => (
+                  <li>{x}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

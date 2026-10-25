@@ -27,6 +27,14 @@ export const en: Dict = {
       description:
         'An advanced hands-on camp of ten sessions and thirty hours: from understanding AI models to shipping demo-ready AI products, with a team capstone project and hiring referrals.',
     },
+    events: {
+      title: 'Events · Syrian AI Community',
+      description: 'Workshops, meetups and camps of the Syrian AI Community, upcoming and past, with registration links and recordings.',
+    },
+    projects: {
+      title: 'Projects · Syrian AI Community',
+      description: 'Capstone projects and initiatives built by members of the Syrian AI Community, with teams, technologies, repositories and demos.',
+    },
     notFound: {
       title: 'Page not found · Syrian AI Community',
       description: 'The page you are looking for does not exist.',
@@ -39,6 +47,8 @@ export const en: Dict = {
     items: [
       { label: 'Home', path: '/' },
       { label: 'About', path: '/about/' },
+      { label: 'Events', path: '/events/' },
+      { label: 'Projects', path: '/projects/' },
       { label: 'The Camp', path: '/programs/ai-engineering-camp/' },
       { label: 'Follow us', path: '/#follow' },
     ],
@@ -68,15 +78,30 @@ export const en: Dict = {
       chips: ['Students and graduates', 'Developers', 'AI enthusiasts', 'Experts and trainers'],
       more: 'Read our story, vision and goals',
     },
-    offer: {
+    events: {
       num: '02',
+      kicker: 'Events',
+      title: 'Upcoming events',
+      sub: 'Workshops, meetups and camps open to anyone interested.',
+      all: 'All events',
+      none: 'No upcoming events right now. New ones are announced on our channels.',
+    },
+    projects: {
+      num: '03',
+      kicker: 'Projects',
+      title: 'Latest community work',
+      sub: 'Capstone projects and initiatives built by members.',
+      all: 'All projects',
+    },
+    offer: {
+      num: '04',
       kicker: 'How we work',
       title: 'Five tracks that carry knowledge from the classroom into practice',
       sub: 'Workshops, camps, shared experience, project building, and connections that cross borders.',
       more: 'Details of our work tracks',
     },
     program: {
-      num: '03',
+      num: '05',
       kicker: 'A sample of our activities',
       title: 'AI Engineering Camp',
       tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
@@ -205,21 +230,11 @@ export const en: Dict = {
       kicker: 'The team',
       title: 'The people behind the community',
       sub: 'Founders, trainers and volunteers working together to bring knowledge and experience closer to Syrian youth.',
-      trainers: {
-        title: 'Trainers',
-        sub: 'Eight engineers and experts working at local and international companies.',
-        items: [
-          { initial: 'I', name: 'Eng. Ibrahim Alobaid', bio: 'AI engineer, AI team lead and project manager at Cardiac Rhythm in the United States. Has worked with local and international companies.', url: 'https://linkedin.com/in/ibrahimalobaid44', handle: 'linkedin.com/in/ibrahimalobaid44' },
-          { initial: 'O', name: 'Eng. Osama Abou Hajar', bio: 'Software engineer at Microsoft; previously worked on 5G network software at Ericsson. Holds a master’s degree in AI and founded the GitSyria initiative.', url: 'https://linkedin.com/in/oabouhajar', handle: 'linkedin.com/in/oabouhajar' },
-          { initial: 'Z', name: 'Eng. Mohammad Zayn Mahrouseh', bio: 'AI engineer and AI team lead at DAWMT in Bahrain, with three years of experience at international companies.', url: 'https://linkedin.com/in/zayn-mahrouseh', handle: 'linkedin.com/in/zayn-mahrouseh' },
-          { initial: 'G', name: 'Eng. Mohammad Ghazal Kassas', bio: 'AI engineer at Amani AI, specializing in natural language processing, intelligent systems and AI agents.', url: 'https://linkedin.com/in/mohammad-ghazal-kassas-b65b57292', handle: 'linkedin.com/in/mohammad-ghazal-kassas' },
-          { initial: 'Y', name: 'Eng. Yassin Abdulmahdi', bio: 'Lead AI Engineer at BeSmart.ai and lecturer at Al-Sham Private University (ASPU).', url: 'https://linkedin.com/in/yassin-abdulmahdi', handle: 'linkedin.com/in/yassin-abdulmahdi' },
-          { initial: 'S', name: 'Eng. Saad Shahrour', bio: 'Founder of Pactonic AI, CTO of Karriya AI in Sweden, and Head of AI at Capital Zone in Portugal.', url: 'https://linkedin.com/in/saad-shahrour', handle: 'linkedin.com/in/saad-shahrour' },
-          { initial: 'S', name: 'Eng. Saad Shayah', bio: 'Software engineer at Basira Foundation, specializing in version control systems and software product management.', url: 'https://linkedin.com/in/saad-shayah', handle: 'linkedin.com/in/saad-shayah' },
-          { initial: 'H', name: 'Eng. Hussain Saoud', bio: 'Software and AI engineer and technical mentor at FICEP ME, combining data-driven innovation with enabling technical teams to build advanced software solutions.', url: 'https://linkedin.com/in/hussain-saoud', handle: 'linkedin.com/in/hussain-saoud' },
-        ],
-      },
-      soon: 'The founders and the volunteer teams (logistics, media and relations) will be added in the next phase.',
+      founders: { title: 'Founders', sub: 'The team that started the initiative and steers it.' },
+      trainers: { title: 'Trainers', sub: 'Engineers and experts working at local and international companies.' },
+      volunteers: { title: 'Volunteers', sub: 'Three teams running logistics, media and relations.' },
+      empty: 'Members will be added soon.',
+      view: 'Full profile',
     },
     impact: {
       num: '09',
@@ -369,6 +384,57 @@ export const en: Dict = {
       body: 'The camp is led by eight engineers and experts working at local and international companies. Meet them on the team page.',
       cta: 'Meet the trainers',
     },
+  },
+
+  common: {
+    placeholder: 'Sample data',
+    placeholderNote: 'These cards are sample data for preview and will be replaced with the real lists.',
+    details: 'Details',
+    back: 'Back',
+    inArabic: 'in Arabic',
+  },
+
+  events: {
+    kicker: 'Events',
+    title: 'Community events',
+    sub: 'Workshops, meetups and camps that carry knowledge from the classroom into practice. Upcoming ones are open for registration; past ones are documented with their recordings.',
+    upcoming: 'Upcoming events',
+    past: 'Past events',
+    none: 'No upcoming events right now. Follow us to hear about new ones.',
+    register: 'Register',
+    recording: 'Watch the recording',
+    joinLink: 'Join link',
+    speakers: 'Speakers',
+    when: 'When',
+    where: 'Where',
+    online: 'Online',
+    program: 'Part of',
+    tags: 'Tags',
+    backToList: 'All events',
+    type: { workshop: 'Workshop', camp: 'Camp', meetup: 'Meetup', hackathon: 'Hackathon', webinar: 'Webinar' },
+    status: { upcoming: 'Upcoming', past: 'Past', cancelled: 'Cancelled' },
+  },
+
+  projects: {
+    kicker: 'Projects',
+    title: 'Community work and projects',
+    sub: 'Camp capstones, member projects and community initiatives, with their teams, technologies and links.',
+    team: 'Team',
+    tech: 'Technologies',
+    program: 'Program',
+    year: 'Year',
+    award: 'Award',
+    links: { repo: 'Repository', demo: 'Live demo', video: 'Video', slides: 'Slides' },
+    backToList: 'All projects',
+  },
+
+  people: {
+    roles: { founder: 'Founder', trainer: 'Trainer', volunteer: 'Volunteer' },
+    teams: { logistics: 'Logistics team', media: 'Media team', relations: 'Relations team' },
+    events: 'Events they took part in',
+    projects: 'Projects they worked on',
+    links: { linkedin: 'LinkedIn', github: 'GitHub', website: 'Website', x: 'X' },
+    backToTeam: 'Whole team',
   },
 
   follow: {

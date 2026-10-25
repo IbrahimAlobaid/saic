@@ -1,0 +1,10 @@
+name:
+  ar: "متطوع فريق اللوجستيات ١"
+  en: "Logistics team volunteer 1"
+roles: [volunteer]
+team: logistics
+bio:
+  ar: "متطوع في فريق اللوجستيات. تُستبدل هذه البطاقة بالبيانات الحقيقية."
+  en: "Volunteer in the logistics team. This card will be replaced with real data."
+order: 21
+placeholder: true

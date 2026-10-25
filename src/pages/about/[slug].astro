@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PersonPage from '../../components/pages/PersonPage.astro';
+import { t } from '../../i18n';
+import { tx } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const people = await getCollection('people', (p) => p.data.active);
+  return people.map((person) => ({ params: { slug: person.id }, props: { person } }));
+}
+
+const locale = 'ar' as const;
+const d = t(locale);
+const { person } = Astro.props;
+const roles = person.data.roles.map((r) => d.people.roles[r]).join(' · ');
+---
+
+<Base
+  locale={locale}
+  title={`${tx(person.data.name, locale)} · ${d.meta.siteName}`}
+  description={tx(person.data.bio, locale) || roles}
+  path={`/about/${person.id}/`}
+>
+  <PersonPage locale={locale} person={person} />
+</Base>

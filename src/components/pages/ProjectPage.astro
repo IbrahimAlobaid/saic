@@ -1,0 +1,113 @@
+---
+import { getEntry } from 'astro:content';
+import Follow from '../Follow.astro';
+import PersonCard from '../PersonCard.astro';
+import { t, href, type Locale } from '../../i18n';
+import { tx, isFallback, paragraphs, fmtNum, resolvePeople, type Project } from '../../lib/content';
+
+interface Props {
+  locale: Locale;
+  project: Project;
+}
+
+const { locale, project } = Astro.props;
+const d = t(locale);
+const p = project.data;
+const members = await resolvePeople(p.members);
+const program = p.program ? await getEntry(p.program) : undefined;
+const body = p.body ? paragraphs(tx(p.body, locale)) : [];
+const bodyFallback = isFallback(p.body, locale);
+const backArrow = locale === 'ar' ? '→' : '←';
+const linkEntries = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) => p.links[k]);
+---
+
+<section class="sec first">
+  <div class="wrap">
+    <a class="more" href={href(locale, '/projects/')} style="margin:0 0 14px"><span aria-hidden="true">{backArrow}</span> {d.projects.backToList}</a>
+    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px">
+      <span class="pill past">{fmtNum(p.year, locale)}</span>
+      {p.cohort && <span class="pill past">{tx(p.cohort, locale)}</span>}
+      {p.award && <span class="pill">{tx(p.award, locale)}</span>}
+      {p.placeholder && <span class="ph">{d.common.placeholder}</span>}
+    </div>
+    <h1 class="t">{tx(p.title, locale)}</h1>
+    <p class="sub">{tx(p.summary, locale)}</p>
+
+    <div class="detail">
+      <div>
+        {
+          body.length > 0 && (
+            <div class="prose" lang={bodyFallback ? 'ar' : undefined} dir={bodyFallback ? 'rtl' : undefined}>
+              {body.map((x) => (
+                <p>{x}</p>
+              ))}
+            </div>
+          )
+        }
+        {
+          (members.length > 0 || p.externalMembers.length > 0) && (
+            <>
+              <h2 class="section-sub">{d.projects.team}</h2>
+              {members.length > 0 && (
+                <div class="grid c2">
+                  {members.map((m) => (
+                    <PersonCard locale={locale} person={m} />
+                  ))}
+                </div>
+              )}
+              {p.externalMembers.length > 0 && (
+                <ul class="chips" style="margin-top:12px">
+                  {p.externalMembers.map((m) => (
+                    <li>{tx(m, locale)}</li>
+                  ))}
+                </ul>
+              )}
+            </>
+          )
+        }
+      </div>
+
+      <aside class="aside">
+        {
+          linkEntries.length > 0 && (
+            <div class="card">
+              <ul class="links-row" style="margin:0">
+                {linkEntries.map((k) => (
+                  <li>
+                    <a href={p.links[k]} target="_blank" rel="noopener">
+                      {d.projects.links[k]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          p.tech.length > 0 && (
+            <div class="card">
+              <h3>{d.projects.tech}</h3>
+              <ul class="tags" style="margin:0">
+                {p.tech.map((x) => (
+                  <li>{x}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          program && (
+            <div class="card">
+              <h3>{d.projects.program}</h3>
+              <a href={href(locale, program.data.path ?? '/')} style="color:#fff;font-weight:800;text-decoration:none">
+                {tx(program.data.title, locale)}
+              </a>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

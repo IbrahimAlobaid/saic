@@ -1,6 +1,8 @@
 ---
 import Follow from '../Follow.astro';
+import PersonCard from '../PersonCard.astro';
 import { t, type Locale } from '../../i18n';
+import { activePeople, groupTeam, TEAMS } from '../../lib/content';
 
 interface Props {
   locale: Locale;
@@ -9,6 +11,9 @@ interface Props {
 const { locale } = Astro.props;
 const d = t(locale);
 const a = d.about;
+const people = await activePeople();
+const team = groupTeam(people);
+const hasPlaceholders = people.some((p) => p.data.placeholder);
 ---
 
 <!-- 01 intro -->
@@ -184,23 +189,67 @@ const a = d.about;
     <h2 class="reveal">{a.team.title}</h2>
     <p class="sub reveal">{a.team.sub}</p>
 
+    {hasPlaceholders && <p class="ph-note reveal">{d.common.placeholderNote}</p>}
+
+    <h3 class="hd reveal" id="founders">{a.team.founders.title}</h3>
+    <p class="sub reveal" style="margin-bottom:18px">{a.team.founders.sub}</p>
+    {
+      team.founders.length > 0 ? (
+        <div class="grid people reveal">
+          {team.founders.map((p) => (
+            <PersonCard locale={locale} person={p} />
+          ))}
+        </div>
+      ) : (
+        <p class="sub reveal">{a.team.empty}</p>
+      )
+    }
+
     <h3 class="hd reveal" id="trainers">{a.team.trainers.title}</h3>
     <p class="sub reveal" style="margin-bottom:18px">{a.team.trainers.sub}</p>
-    <div class="grid people reveal">
-      {
-        a.team.trainers.items.map((p) => (
-          <div class="card person">
-            <span class="ava" aria-hidden="true">{p.initial}</span>
-            <div>
-              <h3>{p.name}</h3>
-              <p>{p.bio}</p>
-              <a href={p.url} target="_blank" rel="noopener">{p.handle}</a>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-    <p class="prose mt reveal" style="color:var(--mist);font-size:.95rem;margin-bottom:0">{a.team.soon}</p>
+    {
+      team.trainers.length > 0 ? (
+        <div class="grid people reveal">
+          {team.trainers.map((p) => (
+            <PersonCard locale={locale} person={p} />
+          ))}
+        </div>
+      ) : (
+        <p class="sub reveal">{a.team.empty}</p>
+      )
+    }
+
+    <h3 class="hd reveal" id="volunteers">{a.team.volunteers.title}</h3>
+    <p class="sub reveal" style="margin-bottom:6px">{a.team.volunteers.sub}</p>
+    {
+      team.volunteers.length === 0 && <p class="sub reveal">{a.team.empty}</p>
+    }
+    {
+      TEAMS.map(
+        (key) =>
+          team.byTeam[key].length > 0 && (
+            <>
+              <h4 class="section-sub reveal" id={`team-${key}`}>
+                {d.people.teams[key]}
+              </h4>
+              <div class="grid people reveal">
+                {team.byTeam[key].map((p) => (
+                  <PersonCard locale={locale} person={p} showTeam={false} />
+                ))}
+              </div>
+            </>
+          ),
+      )
+    }
+    {
+      team.unassigned.length > 0 && (
+        <div class="grid people reveal" style="margin-top:14px">
+          {team.unassigned.map((p) => (
+            <PersonCard locale={locale} person={p} />
+          ))}
+        </div>
+      )
+    }
   </div>
 </section>
 

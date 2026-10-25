@@ -1,0 +1,10 @@
+name:
+  ar: "متطوع فريق الميديا ٢"
+  en: "Media team volunteer 2"
+roles: [volunteer]
+team: media
+bio:
+  ar: "متطوع في فريق الميديا. تُستبدل هذه البطاقة بالبيانات الحقيقية."
+  en: "Volunteer in the media team. This card will be replaced with real data."
+order: 24
+placeholder: true

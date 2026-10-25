@@ -1,0 +1,26 @@
+---
+import { t, href, type Locale } from '../i18n';
+import { tx, fmtNum, type Project } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+  project: Project;
+}
+
+const { locale, project } = Astro.props;
+const d = t(locale);
+const p = project.data;
+const url = href(locale, `/projects/${project.id}/`);
+---
+
+<article class="card">
+  <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px">
+    <span class="pill past">{fmtNum(p.year, locale)}</span>
+    {p.cohort && <span class="pill past">{tx(p.cohort, locale)}</span>}
+    {p.placeholder && <span class="ph">{d.common.placeholder}</span>}
+  </div>
+  <h3><a href={url} style="color:#fff;text-decoration:none">{tx(p.title, locale)}</a></h3>
+  <p>{tx(p.summary, locale)}</p>
+  {p.tech.length > 0 && <ul class="tags">{p.tech.map((x) => <li>{x}</li>)}</ul>}
+  <a class="more" href={url}>{d.common.details} <span aria-hidden="true">{d.arrow}</span></a>
+</article>

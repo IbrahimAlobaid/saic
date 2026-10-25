@@ -1,0 +1,16 @@
+title:
+  ar: "معسكر هندسة الذكاء الاصطناعي"
+  en: "AI Engineering Camp"
+summary:
+  ar: "معسكر تطبيقي متقدم من عشر جلسات وثلاثين ساعة: من فهم نماذج الذكاء الاصطناعي إلى بناء منتجات AI جاهزة للعرض والنشر."
+  en: "An advanced hands-on camp of ten sessions and thirty hours: from understanding AI models to shipping demo-ready AI products."
+path: /programs/ai-engineering-camp/
+cohorts:
+  - name:
+      ar: "الدفعة الأولى"
+      en: "Cohort 1"
+    start: 2026-11-07
+    end: 2027-01-16
+    trainers: [ibrahim-alobaid, osama-abou-hajar, zayn-mahrouseh, mohammad-ghazal-kassas, yassin-abdulmahdi, saad-shahrour, saad-shayah, hussain-saoud]
+    projects: [research-assistant, rag-study-assistant, arabic-document-extraction]
+placeholder: true

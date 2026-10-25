@@ -1,0 +1,10 @@
+name:
+  ar: "عضو مؤسس ٣"
+  en: "Founding member 3"
+roles: [founder]
+# team: logistics | media | relations (للمتطوعين فقط)
+bio:
+  ar: "عضو في الفريق المؤسس للمجتمع. تُستبدل هذه البطاقة بالبيانات الحقيقية."
+  en: "Member of the founding team. This card will be replaced with real data."
+order: 13
+placeholder: true

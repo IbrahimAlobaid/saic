@@ -1,6 +1,8 @@
 ---
+import { getEntry } from 'astro:content';
 import Follow from '../Follow.astro';
 import { t, href, type Locale } from '../../i18n';
+import { tx, initial, resolvePeople } from '../../lib/content';
 
 interface Props {
   locale: Locale;
@@ -9,6 +11,9 @@ interface Props {
 const { locale } = Astro.props;
 const d = t(locale);
 const c = d.camp;
+const program = await getEntry('programs', 'ai-engineering-camp');
+const cohort = program?.data.cohorts[0];
+const trainers = cohort ? await resolvePeople(cohort.trainers) : [];
 ---
 
 <section class="sec first" id="camp">
@@ -195,6 +200,25 @@ const c = d.camp;
     <div class="callout mt reveal" id="trainers">
       <h3>{c.trainers.title}</h3>
       <p>{c.trainers.body}</p>
+      {
+        trainers.length > 0 && (
+          <ul class="plist cols" style="margin-top:14px">
+            {trainers.map((p) => {
+              const name = tx(p.data.name, locale);
+              return (
+                <li>
+                  <a href={href(locale, `/about/${p.id}/`)}>
+                    <span class="ava" aria-hidden="true">
+                      {initial(name)}
+                    </span>
+                    {name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        )
+      }
       <div class="cta" style="justify-content:flex-start;margin-top:18px">
         <a class="btn p" href={href(locale, '/about/') + '#trainers'}>{c.trainers.cta}</a>
       </div>

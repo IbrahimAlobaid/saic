@@ -1,0 +1,10 @@
+name:
+  ar: "م. أسامة أبو حجر"
+  en: "Eng. Osama Abou Hajar"
+roles: [trainer]
+bio:
+  ar: "مهندس برمجيات في Microsoft، عمل سابقًا على تطوير برمجيات شبكات الجيل الخامس 5G في Ericsson. حاصل على ماجستير في الذكاء الاصطناعي، ومؤسس مبادرة GitSyria."
+  en: "Software engineer at Microsoft; previously worked on 5G network software at Ericsson. Holds a master's degree in AI and founded the GitSyria initiative."
+links:
+  linkedin: "https://linkedin.com/in/oabouhajar"
+order: 2

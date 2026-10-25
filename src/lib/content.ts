@@ -67,7 +67,23 @@ export function eventStatus(event: Event, now = new Date()): EventStatus {
   return endOfDay.getTime() >= now.getTime() ? 'upcoming' : 'past';
 }
 
+/**
+ * File presence per collection, resolved at build time without loading anything.
+ * Lets us skip getCollection() on empty folders, which otherwise logs a warning per call.
+ */
+const collectionFiles = {
+  events: import.meta.glob('../content/events/*.yaml'),
+  projects: import.meta.glob('../content/projects/*.yaml'),
+  albums: import.meta.glob('../content/albums/*.yaml'),
+  partners: import.meta.glob('../content/partners/*.yaml'),
+} as const;
+
+export function collectionHasFiles(name: keyof typeof collectionFiles): boolean {
+  return Object.keys(collectionFiles[name]).length > 0;
+}
+
 export async function allEvents(): Promise<Event[]> {
+  if (!collectionHasFiles('events')) return [];
   const list = await getCollection('events');
   return list.sort((a, b) => a.data.start.getTime() - b.data.start.getTime());
 }
@@ -80,6 +96,7 @@ export async function splitEvents(now = new Date()) {
 }
 
 export async function allProjects(): Promise<Project[]> {
+  if (!collectionHasFiles('projects')) return [];
   const list = await getCollection('projects');
   return list.sort((a, b) => b.data.year - a.data.year || a.id.localeCompare(b.id));
 }

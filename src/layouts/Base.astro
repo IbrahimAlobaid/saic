@@ -51,9 +51,6 @@ const fonts =
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href={fonts} rel="stylesheet" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-    <script is:inline>
-      document.documentElement.classList.add('js');
-    </script>
   </head>
   <body>
     <a class="skip" href="#main">{d.nav.skip}</a>
@@ -73,16 +70,25 @@ const fonts =
     <Footer locale={locale} />
 
     <script>
-      // Reveal-on-scroll with a sweep fallback (covers hash loads, jumps and throttled observers).
+      // Reveal-on-scroll. Content is visible by default; only elements below the fold are hidden,
+      // and only once this script runs, so slow networks never see an empty page.
+      const root = document.documentElement;
       const pending = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
       const show = (el: HTMLElement) => {
         el.classList.add('in');
         const i = pending.indexOf(el);
         if (i > -1) pending.splice(i, 1);
       };
+      const inView = (el: HTMLElement, h: number) => {
+        const r = el.getBoundingClientRect();
+        return r.top < h && r.bottom > 0;
+      };
       if (!('IntersectionObserver' in window)) {
         pending.slice().forEach(show);
       } else {
+        const h0 = window.innerHeight || root.clientHeight;
+        for (const el of pending.slice()) if (inView(el, h0)) show(el);
+        root.classList.add('js');
         const io = new IntersectionObserver(
           (entries) => {
             for (const e of entries) {

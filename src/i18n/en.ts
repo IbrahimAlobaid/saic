@@ -426,6 +426,7 @@ export const en: Dict = {
     award: 'Award',
     links: { repo: 'Repository', demo: 'Live demo', video: 'Video', slides: 'Slides' },
     backToList: 'All projects',
+    none: 'No projects have been published yet. Camp capstones and member initiatives will appear here.',
   },
 
   people: {

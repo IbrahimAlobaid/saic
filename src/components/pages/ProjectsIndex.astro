@@ -20,9 +20,17 @@ const anyPlaceholder = projects.some((p) => p.data.placeholder);
     <h1 class="t reveal">{d.projects.title}</h1>
     <p class="sub reveal">{d.projects.sub}</p>
     {anyPlaceholder && <p class="ph-note reveal">{d.common.placeholderNote}</p>}
-    <div class="grid c3 reveal">
-      {projects.map((p) => <ProjectCard locale={locale} project={p} />)}
-    </div>
+    {
+      projects.length > 0 ? (
+        <div class="grid c3 reveal">
+          {projects.map((p) => (
+            <ProjectCard locale={locale} project={p} />
+          ))}
+        </div>
+      ) : (
+        <p class="sub reveal">{d.projects.none}</p>
+      )
+    }
   </div>
 </section>
 

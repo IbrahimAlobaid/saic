@@ -1,5 +1,6 @@
 ---
 import { t, href, type Locale } from '../i18n';
+import { visibleNav } from '../lib/nav';
 
 interface Props {
   locale: Locale;
@@ -7,6 +8,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const d = t(locale);
+const items = await visibleNav(locale);
 ---
 
 <footer>
@@ -14,7 +16,7 @@ const d = t(locale);
     <p class="motto">{d.footer.motto}</p>
     <p class="ftag">{d.footer.tag}</p>
     <ul class="fnav">
-      {d.nav.items.map((item) => <li><a href={href(locale, item.path)}>{item.label}</a></li>)}
+      {items.map((item) => <li><a href={href(locale, item.path)}>{item.label}</a></li>)}
     </ul>
     <p class="copy">{d.footer.copy}</p>
   </div>

@@ -23,6 +23,8 @@ const people = defineCollection({
       name: bi,
       roles: z.array(z.enum(['founder', 'trainer', 'volunteer'])).min(1),
       team: z.enum(['logistics', 'media', 'relations']).optional(),
+      /** Team coordinator (shown first in the team with a badge). */
+      lead: z.boolean().default(false),
       title: bi.optional(),
       bio: bi.optional(),
       photo: image().optional(),

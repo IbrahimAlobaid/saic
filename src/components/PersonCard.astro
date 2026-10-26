@@ -32,6 +32,7 @@ const linkedin = p.links.linkedin;
     </h3>
     <div class="roles">
       {roleLabels.map((r) => <span class="pill">{r}</span>)}
+      {p.lead && <span class="pill">{d.people.lead}</span>}
       {showTeam && teamLabel && <span class="pill past">{teamLabel}</span>}
     </div>
     {title && <p style="color:#fff;font-weight:700;margin-bottom:4px">{title}</p>}

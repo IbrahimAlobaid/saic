@@ -430,6 +430,7 @@ export const ar = {
   people: {
     roles: { founder: 'مؤسس', trainer: 'مدرب', volunteer: 'متطوع' },
     teams: { logistics: 'فريق اللوجستيات', media: 'فريق الميديا', relations: 'فريق العلاقات' },
+    lead: 'منسق الفريق',
     events: 'فعاليات شارك فيها',
     projects: 'مشاريع شارك فيها',
     links: { linkedin: 'لينكدإن', github: 'GitHub', website: 'الموقع', x: 'X', facebook: 'فيسبوك', instagram: 'إنستغرام' },

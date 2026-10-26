@@ -33,6 +33,7 @@ const linkKeys = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) =
       <div>
         <div class="roles" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
           {p.roles.map((r) => <span class="pill">{d.people.roles[r]}</span>)}
+          {p.lead && <span class="pill">{d.people.lead}</span>}
           {p.team && <span class="pill past">{d.people.teams[p.team]}</span>}
           {p.placeholder && <span class="ph">{d.common.placeholder}</span>}
         </div>

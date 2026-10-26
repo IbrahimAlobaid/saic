@@ -1,0 +1,14 @@
+name:
+  ar: "محمد حازم الأحمد العاني"
+  en: "Mohammed Hazem Alahmed Alani"
+roles: [volunteer]
+team: media
+bio:
+  ar: "طالب هندسة معلوماتية."
+  en: "Informatics engineering student."
+photo: ./photos/mohammed-hazem-alani.jpg
+links:
+  linkedin: "https://www.linkedin.com/in/mohammed-alani-588182374"
+  facebook: "https://www.facebook.com/mohammed.alani.3532"
+  instagram: "https://www.instagram.com/mohammed_ani88"
+order: 11

@@ -113,7 +113,10 @@ export function groupTeam(people: Person[]) {
   const founders = people.filter((p) => p.data.roles.includes('founder'));
   const trainers = people.filter((p) => p.data.roles.includes('trainer'));
   const volunteers = people.filter((p) => p.data.roles.includes('volunteer'));
-  const byTeam = Object.fromEntries(TEAMS.map((t) => [t, volunteers.filter((v) => v.data.team === t)])) as Record<Team, Person[]>;
+  const leadFirst = (a: Person, b: Person) => Number(b.data.lead) - Number(a.data.lead) || a.data.order - b.data.order;
+  const byTeam = Object.fromEntries(
+    TEAMS.map((t) => [t, volunteers.filter((v) => v.data.team === t).sort(leadFirst)]),
+  ) as Record<Team, Person[]>;
   const unassigned = volunteers.filter((v) => !v.data.team);
   return { founders, trainers, volunteers, byTeam, unassigned };
 }

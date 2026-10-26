@@ -432,6 +432,7 @@ export const en: Dict = {
   people: {
     roles: { founder: 'Founder', trainer: 'Trainer', volunteer: 'Volunteer' },
     teams: { logistics: 'Logistics team', media: 'Media team', relations: 'Relations team' },
+    lead: 'Team lead',
     events: 'Events they took part in',
     projects: 'Projects they worked on',
     links: { linkedin: 'LinkedIn', github: 'GitHub', website: 'Website', x: 'X', facebook: 'Facebook', instagram: 'Instagram' },

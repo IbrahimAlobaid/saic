@@ -1,0 +1,17 @@
+name:
+  ar: "علي الحسن"
+  en: "Ali Al Hasan"
+roles: [volunteer]
+team: media
+lead: true
+title:
+  ar: "مسؤول الميديا في المجتمع"
+  en: "Media Lead"
+bio:
+  ar: "طالب هندسة معلوماتية."
+  en: "Informatics engineering student."
+links:
+  linkedin: "https://www.linkedin.com/in/ali-al-hasan-958a4635b"
+  facebook: "https://www.facebook.com/share/1MWrqgbfwN/"
+  instagram: "https://www.instagram.com/bvd3i"
+order: 10

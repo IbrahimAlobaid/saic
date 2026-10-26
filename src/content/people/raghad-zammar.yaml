@@ -1,0 +1,29 @@
+name:
+  ar: "رغد زمار"
+  en: "Raghad Zammar"
+roles: [volunteer]
+team: media
+title:
+  ar: "معلقة صوتية ومقدمة فعاليات"
+  en: "Voice-over artist and event host"
+bio:
+  ar: |
+    معلقة صوتية ومقدمة فعاليات رسمية ومؤتمرات.
+    كاتبة محتوى ومسؤولة منصات تواصل اجتماعي.
+    مسؤولة التنسيق والشراكات بمنصة لفيف سوشيال، ومديرة مشاريع وملتقيات.
+    الوجه الإعلامي وممثّلة العلامة التجارية للعديد من المشاريع.
+    مدربة ظهور إعلامي.
+    بكالوريوس أدب عربي.
+    قائدة مجتمعية وعضوة نشطة في منظمات عديدة.
+  en: |
+    Voice-over artist and host of official events and conferences.
+    Content writer and social media manager.
+    Coordination and partnerships lead at the Lafeef Social platform, and manager of projects and forums.
+    Media face and brand ambassador for several projects.
+    Media presence trainer.
+    Bachelor's degree in Arabic literature.
+    Community leader and active member of several organizations.
+photo: ./photos/raghad-zammar.jpg
+links:
+  instagram: "https://www.instagram.com/lafeefsocial"
+order: 12

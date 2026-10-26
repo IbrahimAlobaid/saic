@@ -13,7 +13,8 @@ const { locale, person, showTeam = true } = Astro.props;
 const d = t(locale);
 const p = person.data;
 const name = tx(p.name, locale);
-const bio = tx(p.bio, locale);
+/* Cards show only the first line of the bio; the person page shows all of it. */
+const bio = tx(p.bio, locale).split(/\n/)[0]?.trim() ?? '';
 const title = tx(p.title, locale);
 const url = href(locale, `/about/${person.id}/`);
 const roleLabels = p.roles.map((r) => d.people.roles[r]);

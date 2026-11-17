@@ -24,9 +24,9 @@ export const en: Dict = {
         'Meet the Syrian AI Community: our origin story, vision and mission, goals and values, and the founders, trainers and volunteers bringing AI knowledge closer to Syrian youth.',
     },
     camp: {
-      title: 'AI Engineering Camp: 10 Sessions, 30 Hours | Syrian AI Community',
+      title: 'AI Engineering Camp: 10 Sessions, 28.5 Hours | Syrian AI Community',
       description:
-        'Advanced hands-on AI engineering camp: 10 sessions and 30 hours with expert trainers, from building models to deployable AI products, plus a capstone project.',
+        'Advanced hands-on AI engineering camp: 10 sessions and 28.5 hours with expert trainers, from building models to deployable AI products, plus a capstone project.',
     },
     faq: {
       title: 'FAQ | Syrian AI Community',
@@ -106,7 +106,7 @@ export const en: Dict = {
     program: {
       kicker: 'A sample of our activities',
       title: 'AI Engineering Camp',
-      tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
+      tag: 'HANDS-ON · 10 SESSIONS · 28.5 HOURS',
       sub: 'From understanding AI models to building demo-ready, deployable AI products.',
       body: 'An advanced, hands-on training camp for final-year students and graduates of technical majors. It combines model building, AI systems engineering, teamwork, and the development of a final project.',
       cta: 'Full camp details',
@@ -274,11 +274,11 @@ export const en: Dict = {
     num: '08',
     kicker: 'A sample of our activities',
     title: 'AI Engineering Camp',
-    tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
+    tag: 'HANDS-ON · 10 SESSIONS · 28.5 HOURS',
     sub: 'From understanding AI models to building demo-ready, deployable AI products.',
     stats: [
       { v: '10', l: 'training sessions', wide: false },
-      { v: '30', l: 'hours of training', wide: false },
+      { v: '28.5', l: 'hours of training', wide: false },
       { v: '8', l: 'expert trainers', wide: false },
       { v: 'Capstone', l: 'team graduation project', wide: true },
     ],
@@ -299,7 +299,7 @@ export const en: Dict = {
     },
     path: {
       title: 'Learning path',
-      sub: 'Four progressive stages · ten sessions · thirty hours',
+      sub: 'Four progressive stages · ten sessions · 28.5 hours',
       phases: [
         { n: '1', name: 'Foundations', when: 'Session 1', body: 'Engineering tools, collaboration and code management.' },
         { n: '2', name: 'Models', when: 'Sessions 2–5', body: 'Machine learning, deep learning, computer vision, natural language processing.' },
@@ -506,7 +506,7 @@ export const en: Dict = {
       {
         id: 'program',
         q: 'What is the community’s main training program?',
-        a: 'The AI Engineering Camp: an advanced, hands-on camp of ten sessions and thirty hours for final-year students and graduates of technical majors. It takes participants from understanding AI models to building demo-ready, deployable AI products, with a team capstone project.\nThe curriculum, sessions and camp questions are on the [AI Engineering Camp](/programs/ai-engineering-camp/) page.\nThe full Arabic curriculum, with tasks and learning resources, is on the [camp platform](https://botcamp.syrianai.org/).',
+        a: 'The AI Engineering Camp: an advanced, hands-on camp of ten sessions and 28.5 hours for final-year students and graduates of technical majors. It takes participants from understanding AI models to building demo-ready, deployable AI products, with a team capstone project.\nThe curriculum, sessions and camp questions are on the [AI Engineering Camp](/programs/ai-engineering-camp/) page.\nThe full Arabic curriculum, with tasks and learning resources, is on the [camp platform](https://botcamp.syrianai.org/).',
       },
       {
         id: 'join',
@@ -548,7 +548,7 @@ export const en: Dict = {
       {
         id: 'duration',
         q: 'How long is the camp and how many sessions does it have?',
-        a: 'Ten training sessions totalling thirty hours, in four progressive stages: Foundations, Models, Systems and Product.\nA typical session is three hours combining review, concepts, live building and a pair lab; the rhythm is adjusted for shorter sessions.',
+        a: 'Ten training sessions totalling 28.5 hours, in four progressive stages: Foundations, Models, Systems and Product.\nA typical session is three hours combining review, concepts, live building and a pair lab; the rhythm is adjusted for shorter sessions.',
       },
       {
         id: 'topics',

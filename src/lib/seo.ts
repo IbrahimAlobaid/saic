@@ -194,14 +194,14 @@ export function campCourseNode(locale: Locale, site: URL | undefined, trainers: 
     inLanguage: 'ar',
     provider: { '@id': orgId(site) },
     educationalLevel: locale === 'ar' ? 'متقدم' : 'Advanced',
-    timeRequired: 'PT30H',
+    timeRequired: 'PT28H30M',
     coursePrerequisites: d.camp.prereq.body,
     audience: { '@type': 'EducationalAudience', audienceType: d.camp.audience.items.join(' ') },
     teaches: d.camp.outcomes.abilities,
     syllabusSections: d.camp.sessions.rows.map((r) => ({ '@type': 'Syllabus', name: r.s, description: r.o })),
     hasCourseInstance: {
       '@type': 'CourseInstance',
-      courseWorkload: 'PT30H',
+      courseWorkload: 'PT28H30M',
       ...(trainers.length ? { instructor: trainers.map((p) => personRef(p, locale, site)) } : {}),
     },
   };

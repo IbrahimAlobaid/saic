@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqPage from '../components/pages/FaqPage.astro';
+import { t } from '../i18n';
+import { buildFaq } from '../lib/faq';
+import { faqNode } from '../lib/seo';
+
+const locale = 'ar' as const;
+const d = t(locale);
+const path = '/faq/';
+const items = await buildFaq(locale, d.faq.general, Astro.site);
+---
+
+<Base
+  locale={locale}
+  title={d.meta.faq.title}
+  description={d.meta.faq.description}
+  path={path}
+  crumbs={[{ name: d.faq.title, path }]}
+  schema={[faqNode(items, locale, path, Astro.site)]}
+>
+  <FaqPage locale={locale} items={items} />
+</Base>

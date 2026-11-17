@@ -5,8 +5,11 @@ import mark from '../../assets/mark.png';
 import Follow from '../Follow.astro';
 import EventCard from '../EventCard.astro';
 import ProjectCard from '../ProjectCard.astro';
+import PersonCard from '../PersonCard.astro';
+import Faq from '../Faq.astro';
 import { t, href, type Locale } from '../../i18n';
-import { splitEvents, allProjects } from '../../lib/content';
+import { splitEvents, allProjects, activePeople, groupTeam, tx, initial } from '../../lib/content';
+import { buildFaq } from '../../lib/faq';
 
 interface Props {
   locale: Locale;
@@ -20,12 +23,41 @@ const { upcoming } = await splitEvents();
 const nextEvents = upcoming.slice(0, 3);
 const projects = await allProjects();
 const featured = [...projects.filter((p) => p.data.featured), ...projects.filter((p) => !p.data.featured)].slice(0, 3);
+const { founders, trainers } = groupTeam(await activePeople());
+const hasTeam = founders.length + trainers.length > 0;
+
+/* The home page shows a short selection; the full list (and its FAQPage markup) lives on /faq/. */
+const homeFaqIds = ['what', 'founders', 'trainers', 'who', 'join'];
+const faq = (await buildFaq(locale, d.faq.general, Astro.site)).filter((it) => homeFaqIds.includes(it.id));
+
+/* Section numbers follow the sections that are actually on the page. */
+const order = [
+  'about',
+  ...(nextEvents.length ? ['events'] : []),
+  ...(featured.length ? ['projects'] : []),
+  'offer',
+  'program',
+  ...(hasTeam ? ['team'] : []),
+  ...(faq.length ? ['faq'] : []),
+];
+const fmt = new Intl.NumberFormat(locale === 'ar' ? 'ar-SY' : 'en-GB', { minimumIntegerDigits: 2 });
+const num = (key: string) => fmt.format(order.indexOf(key) + 1);
 ---
 
 <section class="hero">
-  <Image class="wm" src={mark} alt="" width={960} format="webp" loading="eager" aria-hidden="true" />
+  <Image class="wm" src={mark} alt="" width={960} format="webp" loading="lazy" decoding="async" fetchpriority="low" aria-hidden="true" />
   <div class="wrap">
-    <Image class="logo" src={logo} alt={d.hero.logoAlt} widths={[340, 680, 960]} sizes="(max-width: 600px) 72vw, 340px" format="webp" />
+    <Image
+      class="logo"
+      src={logo}
+      alt={d.hero.logoAlt}
+      widths={[340, 680, 960]}
+      sizes="(max-width: 600px) 72vw, 340px"
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
     <div class="bar" aria-hidden="true"></div>
     <h1>{d.hero.title}</h1>
     <p class="tag">{d.hero.tag}</p>
@@ -40,7 +72,7 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
 
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="kicker reveal"><span class="num">{d.home.about.num}</span><span class="lbl">{d.home.about.kicker}</span></div>
+    <div class="kicker reveal"><span class="num">{num('about')}</span><span class="lbl">{d.home.about.kicker}</span></div>
     <h2 class="reveal">{d.home.about.title}</h2>
     <p class="sub reveal">{d.home.about.sub}</p>
     <div class="grid c2">
@@ -64,7 +96,7 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
     <section class="sec" id="events">
       <div class="wrap">
         <div class="kicker reveal">
-          <span class="num">{d.home.events.num}</span>
+          <span class="num">{num('events')}</span>
           <span class="lbl">{d.home.events.kicker}</span>
         </div>
         <h2 class="reveal">{d.home.events.title}</h2>
@@ -87,7 +119,7 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
     <section class="sec" id="projects">
       <div class="wrap">
         <div class="kicker reveal">
-          <span class="num">{d.home.projects.num}</span>
+          <span class="num">{num('projects')}</span>
           <span class="lbl">{d.home.projects.kicker}</span>
         </div>
         <h2 class="reveal">{d.home.projects.title}</h2>
@@ -107,7 +139,7 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
 
 <section class="sec" id="offer">
   <div class="wrap">
-    <div class="kicker reveal"><span class="num">{d.home.offer.num}</span><span class="lbl">{d.home.offer.kicker}</span></div>
+    <div class="kicker reveal"><span class="num">{num('offer')}</span><span class="lbl">{d.home.offer.kicker}</span></div>
     <h2 class="reveal">{d.home.offer.title}</h2>
     <p class="sub reveal">{d.home.offer.sub}</p>
     <div class="grid c3 reveal">
@@ -127,7 +159,7 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
 
 <section class="sec" id="program">
   <div class="wrap">
-    <div class="kicker reveal"><span class="num">{d.home.program.num}</span><span class="lbl">{d.home.program.kicker}</span></div>
+    <div class="kicker reveal"><span class="num">{num('program')}</span><span class="lbl">{d.home.program.kicker}</span></div>
     <h2 class="reveal">{d.home.program.title}</h2>
     <p class="tag reveal" style="margin:0 0 10px">{d.home.program.tag}</p>
     <p class="sub reveal">{d.home.program.sub}</p>
@@ -149,6 +181,80 @@ const featured = [...projects.filter((p) => p.data.featured), ...projects.filter
     </div>
   </div>
 </section>
+
+{
+  hasTeam && (
+    <section class="sec" id="team">
+      <div class="wrap">
+        <div class="kicker reveal">
+          <span class="num">{num('team')}</span>
+          <span class="lbl">{d.home.team.kicker}</span>
+        </div>
+        <h2 class="reveal">{d.home.team.title}</h2>
+        <p class="sub reveal">{d.home.team.sub}</p>
+
+        {founders.length > 0 && (
+          <>
+            <h3 class="hd reveal" style="margin-top:0">
+              {d.home.team.foundersTitle}
+            </h3>
+            <div class="grid people reveal">
+              {founders.map((p) => (
+                <PersonCard locale={locale} person={p} />
+              ))}
+            </div>
+          </>
+        )}
+
+        {trainers.length > 0 && (
+          <>
+            <h3 class="hd reveal">{d.home.team.trainersTitle}</h3>
+            <ul class="plist cols reveal">
+              {trainers.map((p) => {
+                const name = tx(p.data.name, locale);
+                return (
+                  <li>
+                    <a href={href(locale, `/about/${p.id}/`)}>
+                      <span class="ava" aria-hidden="true">
+                        {p.data.photo ? <Image src={p.data.photo} alt="" width={72} height={72} format="webp" /> : initial(name)}
+                      </span>
+                      {name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
+        <a class="more reveal" href={href(locale, '/about/') + '#team'}>
+          {d.home.team.all} <span aria-hidden="true">{d.arrow}</span>
+        </a>
+      </div>
+    </section>
+  )
+}
+
+{
+  faq.length > 0 && (
+    <section class="sec" id="faq">
+      <div class="wrap">
+        <div class="kicker reveal">
+          <span class="num">{num('faq')}</span>
+          <span class="lbl">{d.faq.kicker}</span>
+        </div>
+        <h2 class="reveal">{d.faq.homeTitle}</h2>
+        <p class="sub reveal">{d.faq.homeSub}</p>
+        <div class="reveal">
+          <Faq items={faq} />
+        </div>
+        <a class="more reveal" href={href(locale, '/faq/')}>
+          {d.faq.all} <span aria-hidden="true">{d.arrow}</span>
+        </a>
+      </div>
+    </section>
+  )
+}
 
 <section class="sec" id="invite">
   <div class="wrap">

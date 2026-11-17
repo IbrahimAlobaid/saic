@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import PersonPage from '../../../components/pages/PersonPage.astro';
 import { t } from '../../../i18n';
 import { tx } from '../../../lib/content';
+import { personNode, personId, personTitle, personDescription } from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const people = await getCollection('people', (p) => p.data.active);
@@ -13,14 +15,28 @@ export async function getStaticPaths() {
 const locale = 'en' as const;
 const d = t(locale);
 const { person } = Astro.props;
-const roles = person.data.roles.map((r) => d.people.roles[r]).join(' · ');
+const name = tx(person.data.name, locale);
+const path = `/about/${person.id}/`;
+const photo = person.data.photo ? await getImage({ src: person.data.photo, width: 600, height: 600, format: 'jpeg' }) : undefined;
+const image = photo && Astro.site ? new URL(photo.src, Astro.site).toString() : undefined;
 ---
 
 <Base
   locale={locale}
-  title={`${tx(person.data.name, locale)} · ${d.meta.siteName}`}
-  description={tx(person.data.bio, locale) || roles}
-  path={`/about/${person.id}/`}
+  title={personTitle(person, locale)}
+  description={personDescription(person, locale)}
+  path={path}
+  pageType="ProfilePage"
+  mainEntityId={personId(person.id, Astro.site)}
+  crumbs={[
+    { name: d.about.intro.kicker, path: '/about/' },
+    { name, path },
+  ]}
+  schema={[personNode(person, locale, Astro.site, image)]}
+  ogType="profile"
+  ogImage={image}
+  ogImageAlt={name}
+  ogImageSize={[600, 600]}
 >
   <PersonPage locale={locale} person={person} />
 </Base>

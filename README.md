@@ -25,7 +25,9 @@ npm run preview
 - `src/layouts/Base.astro`: الترويسة والتذييل ووسوم SEO وروابط اللغات.
 - `src/styles/global.css`: هوية الموقع (الألوان والخطوط والمكوّنات).
 - `public/`: CNAME والأيقونة وصورة المشاركة.
-- `docs/PLAN.md`: خطة التطوير الكاملة.
+- `src/content/`: بيانات الأشخاص والفعاليات والمشاريع والبرامج (ملف YAML لكل عنصر بلغتيه).
+- `src/lib/seo.ts` و`src/lib/faq.ts`: البيانات المنظمة لمحركات البحث وأقسام الأسئلة والأجوبة.
+- `docs/PLAN.md`: خطة التطوير الكاملة، و`docs/SEO.md`: مراجعة محركات البحث وخطواتها.
 
 ## النشر
 
@@ -34,5 +36,5 @@ npm run preview
 لبناء نسخة معاينة تُستضاف تحت مسار فرعي:
 
 ```bash
-SITE=https://ibrahimalobaid.github.io PUBLIC_BASE=/saic-preview/ npm run build
+SITE=https://ibrahimalobaid.github.io PUBLIC_BASE=/saic-preview/ PUBLIC_NOINDEX=1 npm run build
 ```

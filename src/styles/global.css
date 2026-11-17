@@ -8,15 +8,15 @@
 html{scroll-behavior:smooth}
 html,body{margin:0}
 body{
-  font-family:'Cairo',system-ui,sans-serif; color:#fff; line-height:1.9;
+  font-family:'Cairo Variable',system-ui,sans-serif; color:#fff; line-height:1.9;
   background:
     radial-gradient(60rem 40rem at 100% 0%, rgba(19,82,100,.55), transparent 60%),
     radial-gradient(50rem 40rem at 0% 100%, rgba(19,82,100,.45), transparent 60%),
     var(--midnight);
   background-attachment:fixed; overflow-x:hidden;
 }
-html[lang="en"] body{font-family:'Sora','Cairo',system-ui,sans-serif; line-height:1.7}
-.tag,.brand span,.stat b.w,.handle,.contact a,.person a,.tbl td.k,.tbl td.t,.card .en-t,.kicker,footer .copy,footer .ftag,.lang,.nf .code{font-family:'Sora','Cairo',sans-serif}
+html[lang="en"] body{font-family:'Sora Variable','Cairo Variable',system-ui,sans-serif; line-height:1.7}
+.tag,.brand span,.stat b.w,.handle,.contact a,.person a,.tbl td.k,.tbl td.t,.card .en-t,.kicker,footer .copy,footer .ftag,.lang,.nf .code{font-family:'Sora Variable','Cairo Variable',sans-serif}
 html[lang="en"] :is(h1,h2,h3,.btn,.name,.motto,.kicker .num,.card .n,.stat b,.tl b,.chips li,.flow li,.ledger b,nav a,.callout h3,.more,.lang){font-weight:700}
 img{max-width:100%; height:auto}
 a{color:var(--cyan)}
@@ -33,14 +33,14 @@ a{color:var(--cyan)}
 .top .wrap{display:flex; align-items:center; gap:14px; min-height:60px}
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; flex:none}
 .brand img{width:46px; height:auto; display:block}
-.brand span{font-family:'Sora',sans-serif; font-size:.7rem; letter-spacing:.18em; color:var(--mist); font-weight:600}
+.brand span{font-family:'Sora Variable',sans-serif; font-size:.7rem; letter-spacing:.18em; color:var(--mist); font-weight:600}
 nav{flex:1; min-width:0}
 nav ul{list-style:none; margin:0; padding:4px 0; display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch}
 nav ul::-webkit-scrollbar{display:none}
 nav a{display:block; white-space:nowrap; padding:7px 13px; border-radius:999px; color:var(--ice); text-decoration:none; font-size:.9rem; font-weight:700; border:1px solid transparent; transition:background-color .15s ease, border-color .15s ease}
 nav a:hover,nav a:focus-visible{border-color:var(--line); background:var(--card)}
 nav a.on{color:var(--cyan); border-color:rgba(29,164,184,.45); background:rgba(29,164,184,.10)}
-.lang{flex:none; font-family:'Sora',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.08em; padding:6px 12px; border:1px solid var(--line); border-radius:999px; color:var(--ice); text-decoration:none; white-space:nowrap; transition:border-color .15s ease, color .15s ease}
+.lang{flex:none; font-family:'Sora Variable',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.08em; padding:6px 12px; border:1px solid var(--line); border-radius:999px; color:var(--ice); text-decoration:none; white-space:nowrap; transition:border-color .15s ease, color .15s ease}
 .lang:hover,.lang:focus-visible{border-color:var(--cyan); color:var(--cyan)}
 @media (max-width:560px){ .brand span{display:none} }
 
@@ -52,7 +52,7 @@ main{position:relative; z-index:1}
 .hero .logo{width:min(340px,72vw); height:auto; display:block; margin:0 auto}
 .bar{width:64px; height:4px; border-radius:999px; background:var(--cyan); margin:30px auto 22px}
 .hero h1{margin:0; font-size:clamp(1.7rem,4.2vw,2.5rem); line-height:1.4; font-weight:800}
-.tag{margin:6px 0 0; font-family:'Sora',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.22em; color:var(--mist)}
+.tag{margin:6px 0 0; font-family:'Sora Variable',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.22em; color:var(--mist)}
 .hero .lead{margin:22px auto 0; font-size:1.1rem; color:var(--ice); max-width:660px}
 .motto{margin:16px 0 0; font-size:1.05rem; font-weight:700; color:var(--cyan)}
 .cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:30px}
@@ -66,7 +66,7 @@ main{position:relative; z-index:1}
 .sec{position:relative; padding:64px 0; scroll-margin-top:72px; border-top:1px solid var(--line)}
 .sec.first{border-top:0; padding-top:56px}
 main > .sec:first-child{border-top:0}
-.kicker{display:flex; align-items:center; gap:12px; font-family:'Sora',sans-serif; font-size:.74rem; letter-spacing:.12em; color:var(--mist)}
+.kicker{display:flex; align-items:center; gap:12px; font-family:'Sora Variable',sans-serif; font-size:.74rem; letter-spacing:.12em; color:var(--mist)}
 .kicker .num{font-family:inherit; font-size:1rem; font-weight:800; color:var(--cyan); letter-spacing:0; padding:0 12px; border:1px solid rgba(29,164,184,.45); border-radius:999px; line-height:1.9}
 .kicker .lbl{font-family:inherit; font-size:.92rem; letter-spacing:0; font-weight:700}
 .sec h2,.sec h1.t{margin:14px 0 8px; font-size:clamp(1.45rem,3vw,1.95rem); line-height:1.4; font-weight:800}
@@ -82,7 +82,7 @@ main > .sec:first-child{border-top:0}
 .card h3{margin:0 0 8px; font-size:1.1rem; font-weight:800; line-height:1.5}
 .card p{margin:0; color:var(--ice); font-size:.98rem}
 .card .n{display:inline-flex; align-items:center; justify-content:center; min-width:40px; height:40px; padding:0 10px; border-radius:12px; background:var(--teal); color:#fff; font-weight:800; margin-bottom:12px}
-.card .en-t{display:block; font-family:'Sora',sans-serif; font-size:.78rem; font-weight:600; color:var(--mist); letter-spacing:.04em; margin-top:2px; direction:ltr; text-align:start}
+.card .en-t{display:block; font-family:'Sora Variable',sans-serif; font-size:.78rem; font-weight:600; color:var(--mist); letter-spacing:.04em; margin-top:2px; direction:ltr; text-align:start}
 .card.link{display:block; color:#fff; text-decoration:none; transition:border-color .15s ease, background-color .15s ease}
 .card.link:hover{border-color:var(--cyan); background:rgba(29,164,184,.10)}
 .callout{padding:22px 24px; border-radius:var(--r); border:1px solid rgba(29,164,184,.45); background:rgba(29,164,184,.10)}
@@ -102,7 +102,7 @@ main > .sec:first-child{border-top:0}
 .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr)); gap:14px}
 .stat{padding:18px 14px; border-radius:var(--r); border:1px solid var(--line); background:var(--card); text-align:center}
 .stat b{display:block; font-size:2rem; line-height:1.25; color:var(--cyan); font-weight:800}
-.stat b.w{font-family:'Sora',sans-serif; font-size:1.35rem; padding:6px 0}
+.stat b.w{font-family:'Sora Variable',sans-serif; font-size:1.35rem; padding:6px 0}
 .stat span{color:var(--ice); font-size:.95rem}
 .ledger{border:1px solid var(--line); border-radius:var(--r); overflow:hidden}
 .ledger .row{display:grid; grid-template-columns:minmax(200px,.85fr) 2fr; gap:6px 24px; padding:16px 20px; border-top:1px solid var(--line); background:var(--card)}
@@ -113,8 +113,8 @@ main > .sec:first-child{border-top:0}
 .tbl{width:100%; border-collapse:separate; border-spacing:0; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--card)}
 .tbl th,.tbl td{padding:14px 16px; text-align:start; vertical-align:top; border-top:1px solid var(--line)}
 .tbl thead th{border-top:0; background:rgba(29,164,184,.10); font-size:.9rem; color:var(--mist); font-weight:700}
-.tbl td.k{font-family:'Sora',sans-serif; color:var(--cyan); font-weight:700; width:3.5rem}
-.tbl td.t{font-family:'Sora',sans-serif; font-weight:600; direction:ltr; text-align:right; font-size:.95rem; min-width:16rem}
+.tbl td.k{font-family:'Sora Variable',sans-serif; color:var(--cyan); font-weight:700; width:3.5rem}
+.tbl td.t{font-family:'Sora Variable',sans-serif; font-weight:600; direction:ltr; text-align:right; font-size:.95rem; min-width:16rem}
 [dir="ltr"] .tbl td.t{text-align:left}
 .tbl td.d{color:var(--ice)}
 @media (max-width:760px){
@@ -167,25 +167,25 @@ main > .sec:first-child{border-top:0}
 .ico svg{width:24px; height:24px}
 .txt{flex:1; display:flex; flex-direction:column; min-width:0}
 .name{font-size:1.05rem; font-weight:800; line-height:1.4}
-.name small{font-family:'Sora',sans-serif; font-size:.72rem; font-weight:600; color:var(--mist); margin-inline-start:6px}
-.handle{font-family:'Sora',sans-serif; font-size:.8rem; color:var(--mist); direction:ltr; text-align:end; unicode-bidi:plaintext; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.name small{font-family:'Sora Variable',sans-serif; font-size:.72rem; font-weight:600; color:var(--mist); margin-inline-start:6px}
+.handle{font-family:'Sora Variable',sans-serif; font-size:.8rem; color:var(--mist); direction:ltr; text-align:end; unicode-bidi:plaintext; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .go{flex:none; color:var(--cyan); font-size:1.4rem; line-height:1}
 [dir="ltr"] .go{transform:scaleX(1)}
 .contact{margin-top:26px; display:grid; gap:8px; color:var(--ice); font-size:.95rem}
-.contact a{color:#fff; text-decoration:none; font-family:'Sora',sans-serif; font-size:.9rem; direction:ltr; unicode-bidi:plaintext}
+.contact a{color:#fff; text-decoration:none; font-family:'Sora Variable',sans-serif; font-size:.9rem; direction:ltr; unicode-bidi:plaintext}
 .contact a:hover{color:var(--cyan)}
 
 footer{position:relative; z-index:1; border-top:1px solid var(--line); padding:36px 0 40px; text-align:center}
 footer .motto{margin:0}
-footer .copy{margin:6px 0 0; font-family:'Sora',sans-serif; font-size:.72rem; color:var(--mist)}
-footer .ftag{margin:10px 0 0; font-family:'Sora',sans-serif; font-size:.7rem; letter-spacing:.2em; color:var(--mist)}
+footer .copy{margin:6px 0 0; font-family:'Sora Variable',sans-serif; font-size:.72rem; color:var(--mist)}
+footer .ftag{margin:10px 0 0; font-family:'Sora Variable',sans-serif; font-size:.7rem; letter-spacing:.2em; color:var(--mist)}
 footer .fnav{list-style:none; margin:18px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:center}
 footer .fnav a{color:var(--ice); text-decoration:none; font-size:.92rem; font-weight:700}
 footer .fnav a:hover{color:var(--cyan)}
 
 /* ---------- 404 ---------- */
 .nf{min-height:60vh; display:flex; align-items:center; text-align:center}
-.nf .code{font-family:'Sora',sans-serif; font-size:4rem; font-weight:700; color:var(--cyan); line-height:1}
+.nf .code{font-family:'Sora Variable',sans-serif; font-size:4rem; font-weight:700; color:var(--cyan); line-height:1}
 
 /* ---------- motion ---------- */
 .js .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
@@ -197,7 +197,7 @@ footer .fnav a:hover{color:var(--cyan)}
 }
 
 /* ---------- phase 1: cards, badges, meta ---------- */
-.ph{display:inline-flex; align-items:center; gap:6px; padding:2px 10px; border-radius:999px; border:1px dashed rgba(255,196,0,.55); background:rgba(255,196,0,.08); color:#ffd166; font-family:'Sora','Cairo',sans-serif; font-size:.68rem; font-weight:700; letter-spacing:.04em; vertical-align:middle}
+.ph{display:inline-flex; align-items:center; gap:6px; padding:2px 10px; border-radius:999px; border:1px dashed rgba(255,196,0,.55); background:rgba(255,196,0,.08); color:#ffd166; font-family:'Sora Variable','Cairo Variable',sans-serif; font-size:.68rem; font-weight:700; letter-spacing:.04em; vertical-align:middle}
 .ph-note{margin:0 0 18px; padding:10px 14px; border-radius:12px; border:1px dashed rgba(255,196,0,.45); background:rgba(255,196,0,.06); color:#ffd166; font-size:.9rem}
 .meta{display:flex; flex-wrap:wrap; gap:6px 14px; margin:0; padding:0; list-style:none; color:var(--mist); font-size:.9rem}
 .meta li{display:inline-flex; align-items:center; gap:6px}
@@ -206,7 +206,7 @@ footer .fnav a:hover{color:var(--cyan)}
 .pill.past{border-color:var(--line); background:var(--card2); color:var(--mist)}
 .pill.cancelled{border-color:rgba(255,99,99,.5); background:rgba(255,99,99,.1); color:#ff9c9c}
 .tags{display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 0; padding:0; list-style:none}
-.tags li{font-family:'Sora','Cairo',sans-serif; font-size:.72rem; color:var(--mist); border:1px solid var(--line); border-radius:8px; padding:1px 8px; direction:ltr}
+.tags li{font-family:'Sora Variable','Cairo Variable',sans-serif; font-size:.72rem; color:var(--mist); border:1px solid var(--line); border-radius:8px; padding:1px 8px; direction:ltr}
 .card.link h3{color:#fff}
 .card.link .more{margin-top:12px}
 .evt{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start}
@@ -239,3 +239,33 @@ footer .fnav a:hover{color:var(--cyan)}
 .sec h2.hd{margin:40px 0 16px; font-size:1.25rem; font-weight:800; display:flex; align-items:center; gap:12px}
 .sec h2.hd::after{content:""; flex:1; height:1px; background:var(--line)}
 .plist.cols{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+
+/* ---------- SEO pass: breadcrumbs, FAQ, team strip ---------- */
+.crumbs ol{list-style:none; margin:0 auto; padding-block:16px 0; display:flex; flex-wrap:wrap; gap:4px 8px; font-size:.85rem; color:var(--mist)}
+.crumbs li{display:inline-flex; align-items:center; gap:8px; min-width:0}
+.crumbs li+li::before{content:"/"; opacity:.5}
+.crumbs a{color:var(--mist); text-decoration:none}
+.crumbs a:hover,.crumbs a:focus-visible{color:var(--cyan)}
+.crumbs [aria-current]{color:var(--ice); font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60vw}
+main > .crumbs + .sec.first{padding-top:26px}
+
+.faq{display:grid; gap:10px}
+.faq-item{border:1px solid var(--line); border-radius:16px; background:var(--card); overflow:hidden; scroll-margin-top:76px}
+.faq-item[open]{border-color:rgba(29,164,184,.45); background:rgba(29,164,184,.06)}
+.faq-item summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 20px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover :is(h2,h3){color:var(--cyan)}
+.faq-item summary :is(h2,h3){margin:0; font-size:1.05rem; font-weight:800; line-height:1.6; display:block}
+html[lang="en"] .faq-item summary :is(h2,h3){font-weight:700}
+.faq-item .chev{flex:none; width:10px; height:10px; border-inline-end:2px solid var(--cyan); border-bottom:2px solid var(--cyan); transform:rotate(45deg); transition:transform .2s ease; margin-inline:4px 6px; margin-top:-4px}
+.faq-item[open] .chev{transform:rotate(225deg); margin-top:4px}
+.faq-a{padding:0 20px 18px; color:var(--ice); font-size:1rem}
+.faq-a p{margin:0 0 10px}
+.faq-a > :last-child{margin-bottom:0}
+.faq-a ul{margin:4px 0 10px; padding-inline-start:20px; display:grid; gap:8px}
+.faq-a a{color:var(--cyan); font-weight:700; text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
+@media (prefers-reduced-motion: reduce){ .faq-item .chev{transition:none} }
+
+.person .affil{color:var(--mist); font-size:.9rem; margin:0 0 6px}
+.plist .ava img{width:100%; height:100%; object-fit:cover; border-radius:11px; display:block}

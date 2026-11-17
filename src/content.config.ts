@@ -7,12 +7,12 @@ const bi = z.object({ ar: z.string(), en: z.string().optional() });
 
 const links = z
   .object({
-    linkedin: z.string().url().optional(),
-    github: z.string().url().optional(),
-    website: z.string().url().optional(),
-    x: z.string().url().optional(),
-    facebook: z.string().url().optional(),
-    instagram: z.string().url().optional(),
+    linkedin: z.url().optional(),
+    github: z.url().optional(),
+    website: z.url().optional(),
+    x: z.url().optional(),
+    facebook: z.url().optional(),
+    instagram: z.url().optional(),
   })
   .default({});
 
@@ -50,15 +50,15 @@ const events = defineCollection({
           city: bi.optional(),
           venue: bi.optional(),
           online: z.boolean().default(false),
-          url: z.string().url().optional(),
+          url: z.url().optional(),
         })
         .default({ online: false }),
       cover: image().optional(),
       summary: bi,
       body: bi.optional(),
       speakers: z.array(reference('people')).default([]),
-      registrationUrl: z.string().url().optional(),
-      recordingUrl: z.string().url().optional(),
+      registrationUrl: z.url().optional(),
+      recordingUrl: z.url().optional(),
       program: reference('programs').optional(),
       album: reference('albums').optional(),
       tags: z.array(z.string()).default([]),
@@ -84,10 +84,10 @@ const projects = defineCollection({
       tech: z.array(z.string()).default([]),
       links: z
         .object({
-          repo: z.string().url().optional(),
-          demo: z.string().url().optional(),
-          video: z.string().url().optional(),
-          slides: z.string().url().optional(),
+          repo: z.url().optional(),
+          demo: z.url().optional(),
+          video: z.url().optional(),
+          slides: z.url().optional(),
         })
         .default({}),
       cover: image().optional(),
@@ -140,7 +140,7 @@ const partners = defineCollection({
     z.object({
       name: z.string(),
       logo: image().optional(),
-      url: z.string().url().optional(),
+      url: z.url().optional(),
       type: z.enum(['academic', 'company', 'community']),
     }),
 });

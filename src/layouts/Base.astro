@@ -1,8 +1,13 @@
 ---
+import '@fontsource-variable/cairo';
+import '@fontsource-variable/sora';
+import cairoArabic from '@fontsource-variable/cairo/files/cairo-arabic-wght-normal.woff2?url';
+import soraLatin from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { t, asset, absolute, locales, type Locale } from '../i18n';
+import { t, asset, absolute, href, locales, otherLocale, type Locale } from '../i18n';
+import { pageGraph, type Crumb } from '../lib/seo';
 
 interface Props {
   locale: Locale;
@@ -10,17 +15,50 @@ interface Props {
   description: string;
   /** Locale-agnostic path of this page, e.g. '/', '/about/', '/programs/ai-engineering-camp/'. */
   path: string;
-  jsonLd?: Record<string, unknown>;
+  /** Trail after the home page; the last entry is the current page. Rendered and emitted as BreadcrumbList. */
+  crumbs?: Crumb[];
+  /** schema.org type of the page node (WebPage, AboutPage, ProfilePage, CollectionPage, ...). */
+  pageType?: string;
+  /** @id of the node this page is mainly about (a Person on profile pages). */
+  mainEntityId?: string;
+  /** Extra schema.org nodes for this page (Person, Course, FAQPage, Event). */
+  schema?: Record<string, unknown>[];
+  /** Absolute URL of a page-specific sharing image; defaults to the site card. */
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogImageSize?: [number, number];
+  ogType?: 'website' | 'profile';
   noindex?: boolean;
 }
 
-const { locale, title, description, path, jsonLd, noindex = false } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  path,
+  crumbs = [],
+  pageType,
+  mainEntityId,
+  schema = [],
+  ogImage,
+  ogImageAlt,
+  ogImageSize,
+  ogType = 'website',
+} = Astro.props;
+
+/* Preview builds (PUBLIC_NOINDEX=1) must never compete with the real domain in search results. */
+const noindex = Astro.props.noindex === true || import.meta.env.PUBLIC_NOINDEX === '1';
+
 const d = t(locale);
 const site = Astro.site;
 const canonical = absolute(locale, path, site);
-const ogImage = site ? new URL(asset('/og.png'), site).toString() : asset('/og.png');
-const fonts =
-  'https://fonts.googleapis.com/css2?family=Cairo:wght@300..800&family=Sora:wght@400..700&display=swap';
+const defaultCard = site ? new URL(asset('/og.png'), site).toString() : asset('/og.png');
+const image = ogImage ?? defaultCard;
+const [imgW, imgH] = ogImage ? (ogImageSize ?? [0, 0]) : [1200, 630];
+const preloadFont = locale === 'ar' ? cairoArabic : soraLatin;
+const graph = noindex
+  ? undefined
+  : await pageGraph({ locale, site, path, title, description, pageType, crumbs, mainEntityId, image, extra: schema });
 ---
 
 <!doctype html>
@@ -30,27 +68,43 @@ const fonts =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <meta name="theme-color" content="#0d1c2b" />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="canonical" href={canonical} />
-    {locales.map((l) => <link rel="alternate" hreflang={l} href={absolute(l, path, site)} />)}
-    <link rel="alternate" hreflang="x-default" href={absolute('ar', path, site)} />
+    {
+      !noindex && (
+        <>
+          <link rel="canonical" href={canonical} />
+          {locales.map((l) => (
+            <link rel="alternate" hreflang={l} href={absolute(l, path, site)} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={absolute('ar', path, site)} />
+        </>
+      )
+    }
+
     <meta property="og:site_name" content={d.meta.siteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content={image} />
+    {imgW > 0 && <meta property="og:image:width" content={String(imgW)} />}
+    {imgH > 0 && <meta property="og:image:height" content={String(imgH)} />}
+    <meta property="og:image:alt" content={ogImageAlt ?? d.hero.logoAlt} />
     <meta property="og:locale" content={d.ogLocale} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href={asset('/favicon.png')} />
+    <meta property="og:locale:alternate" content={t(otherLocale(locale)).ogLocale} />
+    <meta name="twitter:card" content={ogType === 'profile' ? 'summary' : 'summary_large_image'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <link rel="icon" href={asset('/favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="96x96" href={asset('/favicon-96.png')} />
+    <link rel="apple-touch-icon" href={asset('/apple-touch-icon.png')} />
+    <link rel="manifest" href={asset('/site.webmanifest')} />
     <link rel="sitemap" href={asset('/sitemap-index.xml')} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href={fonts} rel="stylesheet" />
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <link rel="preload" as="font" type="font/woff2" href={preloadFont} crossorigin />
+    {graph && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
   </head>
   <body>
     <a class="skip" href="#main">{d.nav.skip}</a>
@@ -64,6 +118,20 @@ const fonts =
     <Header locale={locale} path={path} />
 
     <main id="main">
+      {
+        crumbs.length > 0 && (
+          <nav class="crumbs" aria-label={d.common.breadcrumb}>
+            <ol class="wrap">
+              <li>
+                <a href={href(locale, '/')}>{d.nav.items[0]!.label}</a>
+              </li>
+              {crumbs.map((c, i) => (
+                <li>{i < crumbs.length - 1 ? <a href={href(locale, c.path)}>{c.name}</a> : <span aria-current="page">{c.name}</span>}</li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
       <slot />
     </main>
 

@@ -12,31 +12,37 @@ export const en: Dict = {
 
   meta: {
     siteName: 'Syrian AI Community',
+    topics: ['Artificial intelligence', 'Machine learning', 'Deep learning', 'AI engineering', 'Large language models'],
     home: {
-      title: 'Syrian AI Community · مجتمع الذكاء الاصطناعي السوري',
+      title: 'Syrian AI Community (SAIC) | Learn AI in Syria',
       description:
-        'The Syrian AI Community (SAIC) is a youth-led initiative that brings students, developers and trainers together to learn artificial intelligence, apply it, and build real projects. Get to know us and follow us on social media.',
+        'Syrian AI Community (SAIC): a youth-led initiative where students, developers and trainers learn and apply AI in Syria through workshops, camps and projects.',
     },
     about: {
-      title: 'About · Syrian AI Community',
+      title: 'About: Founders, Trainers and Vision | Syrian AI Community',
       description:
-        'Our origin story, vision and mission, seven goals, work tracks, values, and the team: founders, trainers and volunteers of the Syrian AI Community.',
+        'Meet the Syrian AI Community: our origin story, vision and mission, goals and values, and the founders, trainers and volunteers bringing AI knowledge closer to Syrian youth.',
     },
     camp: {
-      title: 'AI Engineering Camp · Syrian AI Community',
+      title: 'AI Engineering Camp: 10 Sessions, 30 Hours | Syrian AI Community',
       description:
-        'An advanced hands-on camp of ten sessions and thirty hours: from understanding AI models to shipping demo-ready AI products, with a team capstone project and hiring referrals.',
+        'Advanced hands-on AI engineering camp: 10 sessions and 30 hours with expert trainers, from building models to deployable AI products, plus a capstone project.',
+    },
+    faq: {
+      title: 'FAQ | Syrian AI Community',
+      description:
+        'Answers to common questions: what the Syrian AI Community is, who founded it, who its trainers are, how to join or volunteer, and how to reach it for partnerships.',
     },
     events: {
-      title: 'Events · Syrian AI Community',
+      title: 'Events | Syrian AI Community',
       description: 'Workshops, meetups and camps of the Syrian AI Community, upcoming and past, with registration links and recordings.',
     },
     projects: {
-      title: 'Projects · Syrian AI Community',
+      title: 'Projects | Syrian AI Community',
       description: 'Capstone projects and initiatives built by members of the Syrian AI Community, with teams, technologies, repositories and demos.',
     },
     notFound: {
-      title: 'Page not found · Syrian AI Community',
+      title: 'Page not found | Syrian AI Community',
       description: 'The page you are looking for does not exist.',
     },
   },
@@ -50,6 +56,7 @@ export const en: Dict = {
       { label: 'Events', path: '/events/' },
       { label: 'Projects', path: '/projects/' },
       { label: 'The Camp', path: '/programs/ai-engineering-camp/' },
+      { label: 'FAQ', path: '/faq/' },
       { label: 'Follow us', path: '/#follow' },
     ],
     switchLabel: 'العربية',
@@ -68,7 +75,6 @@ export const en: Dict = {
 
   home: {
     about: {
-      num: '01',
       kicker: 'Who we are',
       title: 'A youth-led initiative driven by a passion for knowledge',
       sub: 'A collaborative space that brings students, developers and AI enthusiasts together with experienced practitioners and trainers.',
@@ -79,7 +85,6 @@ export const en: Dict = {
       more: 'Read our story, vision and goals',
     },
     events: {
-      num: '02',
       kicker: 'Events',
       title: 'Upcoming events',
       sub: 'Workshops, meetups and camps open to anyone interested.',
@@ -87,27 +92,32 @@ export const en: Dict = {
       none: 'No upcoming events right now. New ones are announced on our channels.',
     },
     projects: {
-      num: '03',
       kicker: 'Projects',
       title: 'Latest community work',
       sub: 'Capstone projects and initiatives built by members.',
       all: 'All projects',
     },
     offer: {
-      num: '04',
       kicker: 'How we work',
       title: 'Five tracks that carry knowledge from the classroom into practice',
       sub: 'Workshops, camps, shared experience, project building, and connections that cross borders.',
       more: 'Details of our work tracks',
     },
     program: {
-      num: '05',
       kicker: 'A sample of our activities',
       title: 'AI Engineering Camp',
       tag: 'HANDS-ON · 10 SESSIONS · 30 HOURS',
       sub: 'From understanding AI models to building demo-ready, deployable AI products.',
       body: 'An advanced, hands-on training camp for final-year students and graduates of technical majors. It combines model building, AI systems engineering, teamwork, and the development of a final project.',
       cta: 'Full camp details',
+    },
+    team: {
+      kicker: 'The team',
+      title: 'Founders and trainers',
+      sub: 'The people who lead the Syrian AI Community and teach in it.',
+      foundersTitle: 'Founders',
+      trainersTitle: 'Trainers',
+      all: 'Meet the whole team',
     },
     invite: {
       title: 'An invitation to take part',
@@ -392,6 +402,7 @@ export const en: Dict = {
     details: 'Details',
     back: 'Back',
     inArabic: 'in Arabic',
+    breadcrumb: 'Breadcrumb',
   },
 
   events: {
@@ -433,10 +444,141 @@ export const en: Dict = {
     roles: { founder: 'Founder', trainer: 'Trainer', volunteer: 'Volunteer' },
     teams: { logistics: 'Logistics team', media: 'Media team', relations: 'Relations team' },
     lead: 'Team lead',
+    roleJoin: ' and ',
+    affiliation: '{roles} at the Syrian AI Community',
+    affiliationTeam: '{roles} on the {team} of the Syrian AI Community',
     events: 'Events they took part in',
     projects: 'Projects they worked on',
     links: { linkedin: 'LinkedIn', github: 'GitHub', website: 'Website', x: 'X', facebook: 'Facebook', instagram: 'Instagram' },
     backToTeam: 'Whole team',
+  },
+
+  faq: {
+    kicker: 'Questions and answers',
+    title: 'Frequently asked questions',
+    sub: 'Short answers to what people ask most about the Syrian AI Community and its activities.',
+    homeTitle: 'Common questions about the community',
+    homeSub: 'What the community is, who founded it, who teaches in it, and how to join.',
+    all: 'All frequently asked questions',
+    campTitle: 'Common questions about the camp',
+    campSub: 'Duration, prerequisites, content, evaluation and trainers.',
+    campCalloutTitle: 'Looking for AI Engineering Camp questions?',
+    campCalloutBody: 'Duration, prerequisites, content, the capstone project and evaluation are answered on the camp page.',
+    campCalloutCta: 'Camp questions',
+    general: [
+      {
+        id: 'what',
+        q: 'What is the Syrian AI Community?',
+        a: 'The Syrian AI Community (SAIC; in Arabic, مجتمع الذكاء الاصطناعي السوري) is a youth-led initiative driven by a passion for knowledge. It brings students, developers and AI enthusiasts together with experienced practitioners and trainers in a collaborative space that encourages learning, exchanging experiences, developing skills, and working on practical applications and projects.\nRead the full story on the [About](/about/) page.',
+      },
+      {
+        id: 'founders',
+        q: 'Who founded the Syrian AI Community?',
+        a: 'The community was started by its founders:\n{foundersList}',
+      },
+      {
+        id: 'trainers',
+        q: 'Who are the trainers at the Syrian AI Community?',
+        a: 'The trainers are engineers and experts working at local and international companies:\n{trainersList}',
+      },
+      {
+        id: 'who',
+        q: 'Who is the community for?',
+        a: 'The community serves students and graduates, developers and tech enthusiasts, trainers and experts, volunteers and contributors, and partner organizations and initiatives.\nWe welcome different backgrounds and experiences; there is room for everyone with the desire and readiness to learn and to give.',
+      },
+      {
+        id: 'activities',
+        q: 'What activities does the community run?',
+        a: 'The community works through five tracks: technical workshops, hands-on training camps, sharing experience, collaborative learning and project building, and connecting people interested in AI inside and outside Syria.\nEach track is described under [How we reach our goals](/about/#how).',
+      },
+      {
+        id: 'vision',
+        q: 'What are the community’s vision and mission?',
+        a: 'Our vision is to be an active Syrian community that empowers a generation of learners, developers and trainers who can keep pace with AI, contribute valuable solutions, and compete with their skills in the local and global job market.\nOur mission is to provide a motivating, inclusive community environment for exchanging knowledge and experience in artificial intelligence, through workshops, training camps, hands-on activities and peer collaboration.',
+      },
+      {
+        id: 'program',
+        q: 'What is the community’s main training program?',
+        a: 'The AI Engineering Camp: an advanced, hands-on camp of ten sessions and thirty hours for final-year students and graduates of technical majors. It takes participants from understanding AI models to building demo-ready, deployable AI products, with a team capstone project.\nThe curriculum, sessions and camp questions are on the [AI Engineering Camp](/programs/ai-engineering-camp/) page.',
+      },
+      {
+        id: 'join',
+        q: 'How do I join the community and follow its activities?',
+        a: 'Follow the community’s activities, workshops and camps on [LinkedIn](https://www.linkedin.com/company/syrian-ai-community/), [Facebook](https://www.facebook.com/saic.syria), [Instagram](https://www.instagram.com/syrianaicommunity) and [YouTube](https://www.youtube.com/@syaic).',
+      },
+      {
+        id: 'volunteer',
+        q: 'How can I volunteer or take part as a trainer?',
+        a: 'The community has room for trainers and experts who want to share their knowledge, and for volunteers who believe in the value of education and collaboration.\nTo volunteer or to train, contact us at [syrianaicommunity@gmail.com](mailto:syrianaicommunity@gmail.com) or through the community’s [LinkedIn](https://www.linkedin.com/company/syrian-ai-community/) page.',
+      },
+      {
+        id: 'partners',
+        q: 'How can organizations and initiatives collaborate with the community?',
+        a: 'The community welcomes collaboration with organizations and initiatives on educational activities and capacity-building projects.\nFor contact and partnerships: [syrianaicommunity@gmail.com](mailto:syrianaicommunity@gmail.com) or the community’s [LinkedIn](https://www.linkedin.com/company/syrian-ai-community/) page.',
+      },
+      {
+        id: 'where',
+        q: 'Is the community only for people living in Syria?',
+        a: 'No. One of the community’s work tracks is strengthening ties between people interested in AI inside and outside Syria, and drawing on diverse experience to widen learners’ horizons.\nOur core idea is that geography and limited opportunities should never stand in the way of young people’s ambition.',
+      },
+    ],
+    camp: [
+      {
+        id: 'what',
+        q: 'What is the AI Engineering Camp?',
+        a: 'An advanced, hands-on training camp that combines model building, AI systems engineering, teamwork, and the development of a final project. Its goal is to take participants from academic knowledge and isolated experiments in Jupyter Notebooks to building complete solutions with practical value, using ways of working close to real product development environments.',
+      },
+      {
+        id: 'audience',
+        q: 'Who is the camp for?',
+        a: 'Final-year students in informatics engineering, telecommunications engineering and related majors; graduates aiming to work in AI engineering; and developers who know Python and ML/DL basics and want to move on to building practical systems and products.',
+      },
+      {
+        id: 'prereq',
+        q: 'What are the prerequisites?',
+        a: 'The camp is not for complete beginners. Familiarity with Python, programming basics and machine learning concepts is recommended, along with the ability to learn and practice independently between sessions.',
+      },
+      {
+        id: 'duration',
+        q: 'How long is the camp and how many sessions does it have?',
+        a: 'Ten training sessions totalling thirty hours, in four progressive stages: Foundations, Models, Systems and Product.\nA typical session is three hours combining review, concepts, live building and a pair lab; the rhythm is adjusted for shorter sessions.',
+      },
+      {
+        id: 'topics',
+        q: 'What will I learn in the camp?',
+        a: 'The camp covers Git, GitHub and the AI engineer workflow; machine learning from fundamentals to product; deep learning with PyTorch; computer vision; NLP and transformers; LLM engineering (APIs, prompting and RAG); AI-assisted coding; agents, tools and MCP; voice and multimodal agents; then deployment, evaluation and the project demos.\nSee the [ten sessions](/programs/ai-engineering-camp/#sessions) for details.',
+      },
+      {
+        id: 'capstone',
+        q: 'What is the capstone project?',
+        a: 'Participants work in teams to build a runnable, demo-ready AI product that addresses a clear problem and demonstrates design, implementation, evaluation and documentation skills.\nIt starts with forming teams and picking a problem at the end of session six, and ends with testing and the final demo on Demo Day in session ten.',
+      },
+      {
+        id: 'evaluation',
+        q: 'How do training and evaluation work?',
+        a: 'Learning is based on building and reviewing: a focused explanation, then live coding, then a pair lab. Homework is submitted as Pull Requests to the camp repository and gets a code review.\nThe final project is evaluated on Demo Day on idea, implementation, quality of results, documentation and presentation.',
+      },
+      {
+        id: 'outputs',
+        q: 'What do I leave the camp with?',
+        a: 'A GitHub repository with the assignments and practical applications; hands-on experience building models and turning them into services; practical applications in RAG, agents and voice AI; a documented capstone project with setup instructions, evaluation results and a demo; and technical material to showcase in a GitHub portfolio and on LinkedIn.',
+      },
+      {
+        id: 'jobs',
+        q: 'Does the camp help with finding a job?',
+        a: 'We have coordinated with a number of companies to refer camp graduates for employment, with a personal recommendation.\nParticipants also leave with a documented, runnable technical project that strengthens their professional profile.',
+      },
+      {
+        id: 'trainers',
+        q: 'Who are the camp trainers?',
+        a: 'The camp is led by engineers and experts working at local and international companies:\n{trainersList}',
+      },
+      {
+        id: 'register',
+        q: 'How do I ask about upcoming cohorts and registration?',
+        a: 'To ask about cohort dates and registration, contact us at [syrianaicommunity@gmail.com](mailto:syrianaicommunity@gmail.com) or through the community’s pages on [LinkedIn](https://www.linkedin.com/company/syrian-ai-community/), [Facebook](https://www.facebook.com/saic.syria) and [Instagram](https://www.instagram.com/syrianaicommunity).',
+      },
+    ],
   },
 
   follow: {

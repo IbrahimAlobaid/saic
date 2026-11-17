@@ -1,12 +1,28 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Camp from '../../../components/pages/Camp.astro';
 import { t } from '../../../i18n';
+import { resolvePeople } from '../../../lib/content';
+import { buildFaq } from '../../../lib/faq';
+import { campCourseNode, faqNode } from '../../../lib/seo';
 
 const locale = 'en' as const;
 const d = t(locale);
+const path = '/programs/ai-engineering-camp/';
+const program = await getEntry('programs', 'ai-engineering-camp');
+const cohort = program?.data.cohorts[0];
+const trainers = cohort ? await resolvePeople(cohort.trainers) : [];
+const faq = await buildFaq(locale, d.faq.camp, Astro.site);
 ---
 
-<Base locale={locale} title={d.meta.camp.title} description={d.meta.camp.description} path="/programs/ai-engineering-camp/">
-  <Camp locale={locale} />
+<Base
+  locale={locale}
+  title={d.meta.camp.title}
+  description={d.meta.camp.description}
+  path={path}
+  crumbs={[{ name: d.camp.title, path }]}
+  schema={[campCourseNode(locale, Astro.site, trainers), faqNode(faq, locale, path, Astro.site)]}
+>
+  <Camp locale={locale} faq={faq} />
 </Base>

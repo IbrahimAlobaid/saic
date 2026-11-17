@@ -17,14 +17,12 @@ const members = await resolvePeople(p.members);
 const program = p.program ? await getEntry(p.program) : undefined;
 const body = p.body ? paragraphs(tx(p.body, locale)) : [];
 const bodyFallback = isFallback(p.body, locale);
-const backArrow = locale === 'ar' ? '→' : '←';
 const linkEntries = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) => p.links[k]);
 ---
 
 <section class="sec first">
   <div class="wrap">
-    <a class="more" href={href(locale, '/projects/')} style="margin:0 0 14px"><span aria-hidden="true">{backArrow}</span> {d.projects.backToList}</a>
-    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px">
+    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
       <span class="pill past">{fmtNum(p.year, locale)}</span>
       {p.cohort && <span class="pill past">{tx(p.cohort, locale)}</span>}
       {p.award && <span class="pill">{tx(p.award, locale)}</span>}

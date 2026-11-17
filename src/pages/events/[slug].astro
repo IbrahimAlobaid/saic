@@ -2,7 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import EventPage from '../../components/pages/EventPage.astro';
 import { t } from '../../i18n';
-import { tx, allEvents } from '../../lib/content';
+import { tx, allEvents, resolvePeople } from '../../lib/content';
+import { eventNode } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const events = await allEvents();
@@ -12,13 +13,21 @@ export async function getStaticPaths() {
 const locale = 'ar' as const;
 const d = t(locale);
 const { event } = Astro.props;
+const title = tx(event.data.title, locale);
+const path = `/events/${event.id}/`;
+const speakers = await resolvePeople(event.data.speakers);
 ---
 
 <Base
   locale={locale}
-  title={`${tx(event.data.title, locale)} · ${d.meta.siteName}`}
+  title={`${title} | ${d.meta.siteName}`}
   description={tx(event.data.summary, locale)}
-  path={`/events/${event.id}/`}
+  path={path}
+  crumbs={[
+    { name: d.events.kicker, path: '/events/' },
+    { name: title, path },
+  ]}
+  schema={[await eventNode(event, locale, Astro.site, speakers)]}
 >
   <EventPage locale={locale} event={event} />
 </Base>

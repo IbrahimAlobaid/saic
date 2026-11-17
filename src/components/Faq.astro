@@ -1,0 +1,28 @@
+---
+import type { BuiltFaq } from '../lib/faq';
+
+interface Props {
+  items: BuiltFaq[];
+  /** Heading level for the questions (h3 inside a section with an h2, h2 on the FAQ page). */
+  level?: 'h2' | 'h3';
+  /** Prefix for the anchor ids, so two FAQ blocks can share a page. */
+  idPrefix?: string;
+}
+
+const { items, level = 'h3', idPrefix = 'faq' } = Astro.props;
+const H = level;
+---
+
+<div class="faq">
+  {
+    items.map((it, i) => (
+      <details class="faq-item" id={`${idPrefix}-${it.id}`} open={i === 0}>
+        <summary>
+          <H>{it.q}</H>
+          <span class="chev" aria-hidden="true" />
+        </summary>
+        <div class="faq-a" set:html={it.html} />
+      </details>
+    ))
+  }
+</div>

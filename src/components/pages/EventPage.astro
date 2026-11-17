@@ -19,13 +19,11 @@ const program = e.program ? await getEntry(e.program) : undefined;
 const where = eventWhere(e.location, locale, d.events.online);
 const body = e.body ? paragraphs(tx(e.body, locale)) : [];
 const bodyFallback = isFallback(e.body, locale);
-const backArrow = locale === 'ar' ? '→' : '←';
 ---
 
 <section class="sec first">
   <div class="wrap">
-    <a class="more" href={href(locale, '/events/')} style="margin:0 0 14px"><span aria-hidden="true">{backArrow}</span> {d.events.backToList}</a>
-    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px">
+    <div class="top" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
       <span class="pill">{d.events.type[e.type]}</span>
       <span class:list={['pill', status]}>{d.events.status[status]}</span>
       {e.placeholder && <span class="ph">{d.common.placeholder}</span>}

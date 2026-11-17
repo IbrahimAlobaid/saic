@@ -2,11 +2,20 @@
 import Base from '../../layouts/Base.astro';
 import EventsIndex from '../../components/pages/EventsIndex.astro';
 import { t } from '../../i18n';
+import { collectionHasFiles } from '../../lib/content';
 
 const locale = 'ar' as const;
 const d = t(locale);
 ---
 
-<Base locale={locale} title={d.meta.events.title} description={d.meta.events.description} path="/events/">
+<Base
+  locale={locale}
+  title={d.meta.events.title}
+  description={d.meta.events.description}
+  path="/events/"
+  pageType="CollectionPage"
+  noindex={!collectionHasFiles('events')}
+  crumbs={[{ name: d.events.kicker, path: '/events/' }]}
+>
   <EventsIndex locale={locale} />
 </Base>

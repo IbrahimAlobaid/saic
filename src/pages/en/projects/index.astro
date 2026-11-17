@@ -2,11 +2,20 @@
 import Base from '../../../layouts/Base.astro';
 import ProjectsIndex from '../../../components/pages/ProjectsIndex.astro';
 import { t } from '../../../i18n';
+import { collectionHasFiles } from '../../../lib/content';
 
 const locale = 'en' as const;
 const d = t(locale);
 ---
 
-<Base locale={locale} title={d.meta.projects.title} description={d.meta.projects.description} path="/projects/">
+<Base
+  locale={locale}
+  title={d.meta.projects.title}
+  description={d.meta.projects.description}
+  path="/projects/"
+  pageType="CollectionPage"
+  noindex={!collectionHasFiles('projects')}
+  crumbs={[{ name: d.projects.kicker, path: '/projects/' }]}
+>
   <ProjectsIndex locale={locale} />
 </Base>

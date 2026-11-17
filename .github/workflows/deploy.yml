@@ -35,3 +35,22 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  # Tells IndexNow-enabled search engines (Bing, Yandex, Seznam, Naver) which URLs to recrawl.
+  # The key file public/0c8f8b32c37c6990a874efa2b2cf260f.txt proves ownership. Google does not use IndexNow.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Submit the sitemap URLs to IndexNow
+        env:
+          HOST: syrianai.org
+          KEY: 0c8f8b32c37c6990a874efa2b2cf260f
+        run: |
+          urls=$(curl -fsS "https://$HOST/sitemap-0.xml" | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -s .)
+          jq -n --arg host "$HOST" --arg key "$KEY" --argjson urls "$urls" \
+            '{host: $host, key: $key, keyLocation: ("https://" + $host + "/" + $key + ".txt"), urlList: $urls}' > body.json
+          echo "Submitting $(jq '.urlList | length' body.json) URLs"
+          curl -sS -o /dev/null -w "IndexNow response: %{http_code}\n" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" --data @body.json

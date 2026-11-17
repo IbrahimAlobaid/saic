@@ -12,13 +12,19 @@ export async function getStaticPaths() {
 const locale = 'ar' as const;
 const d = t(locale);
 const { project } = Astro.props;
+const title = tx(project.data.title, locale);
+const path = `/projects/${project.id}/`;
 ---
 
 <Base
   locale={locale}
-  title={`${tx(project.data.title, locale)} · ${d.meta.siteName}`}
+  title={`${title} | ${d.meta.siteName}`}
   description={tx(project.data.summary, locale)}
-  path={`/projects/${project.id}/`}
+  path={path}
+  crumbs={[
+    { name: d.projects.kicker, path: '/projects/' },
+    { name: title, path },
+  ]}
 >
   <ProjectPage locale={locale} project={project} />
 </Base>

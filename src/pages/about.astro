@@ -7,6 +7,13 @@ const locale = 'ar' as const;
 const d = t(locale);
 ---
 
-<Base locale={locale} title={d.meta.about.title} description={d.meta.about.description} path="/about/">
+<Base
+  locale={locale}
+  title={d.meta.about.title}
+  description={d.meta.about.description}
+  path="/about/"
+  pageType="AboutPage"
+  crumbs={[{ name: d.about.intro.kicker, path: '/about/' }]}
+>
   <About locale={locale} />
 </Base>

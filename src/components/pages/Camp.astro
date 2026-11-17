@@ -1,14 +1,17 @@
 ---
 import { getEntry } from 'astro:content';
 import Follow from '../Follow.astro';
+import Faq from '../Faq.astro';
 import { t, href, type Locale } from '../../i18n';
 import { tx, initial, resolvePeople } from '../../lib/content';
+import type { BuiltFaq } from '../../lib/faq';
 
 interface Props {
   locale: Locale;
+  faq?: BuiltFaq[];
 }
 
-const { locale } = Astro.props;
+const { locale, faq = [] } = Astro.props;
 const d = t(locale);
 const c = d.camp;
 const program = await getEntry('programs', 'ai-engineering-camp');
@@ -225,5 +228,25 @@ const trainers = cohort ? await resolvePeople(cohort.trainers) : [];
     </div>
   </div>
 </section>
+
+{
+  faq.length > 0 && (
+    <section class="sec" id="faq">
+      <div class="wrap">
+        <div class="kicker reveal">
+          <span class="lbl">{d.faq.kicker}</span>
+        </div>
+        <h2 class="reveal">{d.faq.campTitle}</h2>
+        <p class="sub reveal">{d.faq.campSub}</p>
+        <div class="reveal">
+          <Faq items={faq} idPrefix="q" />
+        </div>
+        <a class="more reveal" href={href(locale, '/faq/')}>
+          {d.faq.all} <span aria-hidden="true">{d.arrow}</span>
+        </a>
+      </div>
+    </section>
+  )
+}
 
 <Follow locale={locale} />

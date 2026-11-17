@@ -3,8 +3,9 @@ import { Image } from 'astro:assets';
 import Follow from '../Follow.astro';
 import EventCard from '../EventCard.astro';
 import ProjectCard from '../ProjectCard.astro';
-import { t, href, type Locale } from '../../i18n';
+import { t, type Locale } from '../../i18n';
 import { tx, isFallback, paragraphs, initial, personActivity, type Person } from '../../lib/content';
+import { affiliation } from '../../lib/seo';
 
 interface Props {
   locale: Locale;
@@ -19,17 +20,23 @@ const title = tx(p.title, locale);
 const bio = p.bio ? paragraphs(tx(p.bio, locale)) : [];
 const bioFallback = isFallback(p.bio, locale);
 const { events, projects } = await personActivity(person);
-const backArrow = locale === 'ar' ? '→' : '←';
 const linkKeys = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) => p.links[k]);
 ---
 
 <section class="sec first">
   <div class="wrap">
-    <a class="more" href={href(locale, '/about/') + '#team'} style="margin:0 0 18px"><span aria-hidden="true">{backArrow}</span> {d.people.backToTeam}</a>
     <div class="person-head">
-      <span class="ava lg" aria-hidden="true">
-        {p.photo ? <Image src={p.photo} alt="" width={240} height={240} format="webp" /> : initial(name)}
-      </span>
+      {
+        p.photo ? (
+          <span class="ava lg">
+            <Image src={p.photo} alt={name} width={240} height={240} format="webp" loading="eager" fetchpriority="high" />
+          </span>
+        ) : (
+          <span class="ava lg" aria-hidden="true">
+            {initial(name)}
+          </span>
+        )
+      }
       <div>
         <div class="roles" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
           {p.roles.map((r) => <span class="pill">{d.people.roles[r]}</span>)}
@@ -39,6 +46,7 @@ const linkKeys = (Object.keys(p.links) as (keyof typeof p.links)[]).filter((k) =
         </div>
         <h1 class="t" style="margin:0">{name}</h1>
         {title && <p class="sub" style="margin:6px 0 0;color:#fff;font-weight:700">{title}</p>}
+        <p class="affil" style="margin:6px 0 0;color:var(--mist);font-size:.95rem">{affiliation(person, locale)}</p>
       </div>
     </div>
 

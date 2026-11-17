@@ -1,0 +1,35 @@
+---
+import Follow from '../Follow.astro';
+import Faq from '../Faq.astro';
+import { t, href, type Locale } from '../../i18n';
+import type { BuiltFaq } from '../../lib/faq';
+
+interface Props {
+  locale: Locale;
+  items: BuiltFaq[];
+}
+
+const { locale, items } = Astro.props;
+const d = t(locale);
+const campFaq = href(locale, '/programs/ai-engineering-camp/') + '#faq';
+---
+
+<section class="sec first" id="faq">
+  <div class="wrap">
+    <div class="kicker"><span class="lbl">{d.faq.kicker}</span></div>
+    <h1 class="t">{d.faq.title}</h1>
+    <p class="sub">{d.faq.sub}</p>
+
+    <Faq items={items} level="h2" />
+
+    <div class="callout mt">
+      <h3>{d.faq.campCalloutTitle}</h3>
+      <p>{d.faq.campCalloutBody}</p>
+      <div class="cta" style="justify-content:flex-start;margin-top:16px">
+        <a class="btn p" href={campFaq}>{d.faq.campCalloutCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Follow locale={locale} />

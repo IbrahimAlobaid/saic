@@ -389,6 +389,13 @@ export const en: Dict = {
       hiringTitle: 'Referrals to companies with a personal recommendation',
       hiringBody: 'We have coordinated with a number of companies to refer camp graduates for employment.',
     },
+    site: {
+      url: 'https://botcamp.syrianai.org/',
+      title: 'Camp platform',
+      body: 'The full curriculum, with its ten sessions, their tasks, learning resources and the capstone project, is on the camp platform (in Arabic).',
+      cta: 'Open the camp platform',
+      sessionsCta: 'Session details and tasks on the platform',
+    },
     trainers: {
       title: 'Trainers',
       body: 'The camp is led by eight engineers and experts working at local and international companies. Meet them on the team page.',
@@ -499,7 +506,7 @@ export const en: Dict = {
       {
         id: 'program',
         q: 'What is the community’s main training program?',
-        a: 'The AI Engineering Camp: an advanced, hands-on camp of ten sessions and thirty hours for final-year students and graduates of technical majors. It takes participants from understanding AI models to building demo-ready, deployable AI products, with a team capstone project.\nThe curriculum, sessions and camp questions are on the [AI Engineering Camp](/programs/ai-engineering-camp/) page.',
+        a: 'The AI Engineering Camp: an advanced, hands-on camp of ten sessions and thirty hours for final-year students and graduates of technical majors. It takes participants from understanding AI models to building demo-ready, deployable AI products, with a team capstone project.\nThe curriculum, sessions and camp questions are on the [AI Engineering Camp](/programs/ai-engineering-camp/) page.\nThe full Arabic curriculum, with tasks and learning resources, is on the [camp platform](https://botcamp.syrianai.org/).',
       },
       {
         id: 'join',
@@ -546,7 +553,7 @@ export const en: Dict = {
       {
         id: 'topics',
         q: 'What will I learn in the camp?',
-        a: 'The camp covers Git, GitHub and the AI engineer workflow; machine learning from fundamentals to product; deep learning with PyTorch; computer vision; NLP and transformers; LLM engineering (APIs, prompting and RAG); AI-assisted coding; agents, tools and MCP; voice and multimodal agents; then deployment, evaluation and the project demos.\nSee the [ten sessions](/programs/ai-engineering-camp/#sessions) for details.',
+        a: 'The camp covers Git, GitHub and the AI engineer workflow; machine learning from fundamentals to product; deep learning with PyTorch; computer vision; NLP and transformers; LLM engineering (APIs, prompting and RAG); AI-assisted coding; agents, tools and MCP; voice and multimodal agents; then deployment, evaluation and the project demos.\nSee the [ten sessions](/programs/ai-engineering-camp/#sessions) for details, and the [camp platform](https://botcamp.syrianai.org/sessions/) for each session’s tasks and resources (in Arabic).',
       },
       {
         id: 'capstone',

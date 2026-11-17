@@ -189,6 +189,8 @@ export function campCourseNode(locale: Locale, site: URL | undefined, trainers: 
     alternateName: locale === 'ar' ? 'AI Engineering Camp' : 'معسكر هندسة الذكاء الاصطناعي',
     description: d.meta.camp.description,
     url: canonical,
+    /* The camp's own learning platform describes the same course. */
+    sameAs: d.camp.site.url,
     inLanguage: 'ar',
     provider: { '@id': orgId(site) },
     educationalLevel: locale === 'ar' ? 'متقدم' : 'Advanced',

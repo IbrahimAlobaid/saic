@@ -41,6 +41,14 @@ const trainers = cohort ? await resolvePeople(cohort.trainers) : [];
       <p set:html={c.introHtml} />
     </div>
 
+    <div class="callout mt reveal" id="platform">
+      <h3>{c.site.title}</h3>
+      <p>{c.site.body}</p>
+      <div class="cta" style="justify-content:flex-start;margin-top:16px">
+        <a class="btn p" href={c.site.url} target="_blank" rel="noopener">{c.site.cta}</a>
+      </div>
+    </div>
+
     <div class="grid c2 mt reveal">
       <div class="card">
         <h3>{c.method.title}</h3>
@@ -104,6 +112,9 @@ const trainers = cohort ? await resolvePeople(cohort.trainers) : [];
         </tbody>
       </table>
     </div>
+    <a class="more reveal" href={`${c.site.url}sessions/`} target="_blank" rel="noopener">
+      {c.site.sessionsCta} <span aria-hidden="true">{d.arrow}</span>
+    </a>
 
     <!-- capstone -->
     <h3 class="hd reveal" id="capstone">{c.capstone.title}</h3>

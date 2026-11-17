@@ -19,7 +19,7 @@ const isActive = (itemPath: string) => itemPath === path;
 <header class="top">
   <div class="wrap">
     <a class="brand" href={href(locale, '/')} aria-label={d.nav.brandAria}>
-      <Image src={mark} alt="" width={46} densities={[1, 2, 3]} format="webp" />
+      <Image src={mark} alt="" width={46} densities={[1, 2, 3]} format="webp" loading="eager" decoding="async" />
       <span>SAIC</span>
     </a>
     <nav aria-label={locale === 'ar' ? 'أقسام الموقع' : 'Site sections'}>
